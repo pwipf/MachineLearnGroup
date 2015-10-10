@@ -35,4 +35,13 @@ public class NNLayer {
 	public int numNodes() {
 		return nodes.length;
 	}
+        
+        public double getFinalLayerOutput() {
+            // Sum the weights of the outputs
+            double sum = 0;
+            for (int i = 0; i < nodes.length; i++) {
+                sum += nodes[i].getWeights()[0] * nodes[i].getOutput();
+            }
+            return 1.0;
+        }
 }

@@ -6,7 +6,7 @@ public class Node {
 
 	// initializes nextLayerSize weights to a random value between -1 and 1
 	private double weights[];
-	private int output;
+	private int output = 0;
 	public Node(int nextLayerSize) {
 		weights = new double[nextLayerSize];
 		Random r = new Random();
@@ -33,4 +33,9 @@ public class Node {
 	public void updateWeights(double w) {
 		this.weights = weights;
 	}
-}
+        
+        // Get node output
+        public double getOutput() {
+            return output;
+        }
+    }

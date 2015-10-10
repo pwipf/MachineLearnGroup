@@ -39,15 +39,14 @@ public class BuildNeuralNet {
 			}
 		}
 		// Populate node weights
-		// use an initial value i = 1 because of refrencing to the vectors array list, where the first layer, the input layer should have been
-		// populated. The output vector is not yet populated, because this loop makes reference to the next layer, for which the 
+                // The output vector is not yet populated, because this loop makes reference to the next layer, for which the 
 		// output layer has none.
-		for (int i = 1; i < vectors.size() - 1; i++) {
+		for (int i = 0; i < vectors.size() - 1; i++) {
 			vectors.get(i).populateNodeWeights(vectors.get(i + 1).numNodes());
 
 		}
 		// Handle output layer
-		vectors.get(vectors.size() - 1).populateNodeWeights(0);
+		vectors.get(vectors.size() - 1).populateNodeWeights(1);
 		printNN(vectors);
 	}
 
@@ -63,9 +62,10 @@ public class BuildNeuralNet {
 		// Outer loop cycles through rows
 		// maxRowSize is the variable used to control this.
 		for (int i = 0; i < vectors.size(); i++) {
-			for (int j = 0; j < vectors.get(i).numNodes(); j++) {
-				System.out.printf("Layer %d node %d%n", i, j);
-				for (int w = 0; w < vectors.get(i).getNode(j).getWeights().length; w++) {
+                    NNLayer curLayer = vectors.get(i);
+			for (int j = 0; j < curLayer.numNodes(); j++) {
+				System.out.printf("%nLayer %d node %d%n", i, j);
+				for (int w = 0; w < curLayer.getNode(j).getWeights().length; w++) {
 					System.out.printf("%f, ", vectors.get(i).getNode(j).getWeights()[w]);
 				}
 			}
