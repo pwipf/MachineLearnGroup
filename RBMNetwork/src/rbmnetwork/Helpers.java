@@ -34,7 +34,7 @@ package rbmnetwork;
       if (blankLine) System.out.println("\n");
     }
 
-    public static void ShowMatrix(double[][] matrix, int numRows, int decimals)
+    public static void ShowMatrix(double[][] matrix, int numRows)
     {
       int ct = 0;
       if (numRows == -1) 

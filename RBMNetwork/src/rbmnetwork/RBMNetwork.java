@@ -84,7 +84,7 @@ public class RBMNetwork {
       
       
       System.out.println("\nSetting centroids (means) to:");
-      Helpers.ShowMatrix(centroids, -1, 2);
+      Helpers.ShowMatrix(centroids, -1);
       System.out.println("Loading centroids into radial net");
       rn.SetCentroids(centroids);
 
@@ -134,7 +134,7 @@ public class RBMNetwork {
       //hoWeights[0][1] = -5.354;
       
       System.out.println("\nSetting hidden-output weights to:");
-      Helpers.ShowMatrix(hoWeights, -1, 2);
+      Helpers.ShowMatrix(hoWeights, -1);
       System.out.println("Loading hidden-output weights into radial net");
       rn.SetWeights(hoWeights);
 
