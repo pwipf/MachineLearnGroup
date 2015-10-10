@@ -30,15 +30,72 @@ public class RBMNetwork {
     int numOutput = in.nextInt();
     System.out.printf("%n");  
       
+      //30 data entries, 7 inputs
+      //
+      int numInputTuples = 30;
+      double[][] inputData = new double[numInputTuples][7];
       
       
       
       
+      inputData[0] = new double[] { -0.784, 1.255, -1.332, -1.306, 0, 0, 1 };
+      inputData[1] = new double[] { -0.995, -0.109, -1.332, -1.306, 0, 0, 1 };
+      inputData[2] = new double[] { -1.206, 0.436, -1.386, -1.306, 0, 0, 1 };
+      inputData[3] = new double[] { -1.312, 0.164, -1.278, -1.306, 0, 0, 1 };
+      inputData[4] = new double[] { -0.890, 1.528, -1.332, -1.306, 0, 0, 1 };
+      inputData[5] = new double[] { -0.468, 2.346, -1.170, -1.048, 0, 0, 1 };
+      inputData[6] = new double[] { -1.312, 0.982, -1.332, -1.177, 0, 0, 1 };
+      inputData[7] = new double[] { -0.890, 0.982, -1.278, -1.306, 0, 0, 1 };
+      inputData[8] = new double[] { -1.523, -0.382, -1.332, -1.306, 0, 0, 1 };
+      inputData[9] = new double[] { -0.995, 0.164, -1.278, -1.435, 0, 0, 1 };
+
+      inputData[10] = new double[] { 1.220, 0.436, 0.452, 0.241, 0, 1, 0 };
+      inputData[11] = new double[] { 0.587, 0.436, 0.344, 0.370, 0, 1, 0 };
+      inputData[12] = new double[] { 1.115, 0.164, 0.560, 0.370, 0, 1, 0 };
+      inputData[13] = new double[] { -0.362, -2.019, 0.074, 0.112, 0, 1, 0 };
+      inputData[14] = new double[] { 0.693, -0.655, 0.398, 0.370, 0, 1, 0 };
+      inputData[15] = new double[] { -0.151, -0.655, 0.344, 0.112, 0, 1, 0 };
+      inputData[16] = new double[] { 0.482, 0.709, 0.452, 0.498, 0, 1, 0 };
+      inputData[17] = new double[] { -0.995, -1.746, -0.305, -0.275, 0, 1, 0 };
+      inputData[18] = new double[] { 0.798, -0.382, 0.398, 0.112, 0, 1, 0 };
+      inputData[19] = new double[] { -0.679, -0.927, 0.020, 0.241, 0, 1, 0 };
+
+      inputData[20] = new double[] { 0.482, 0.709, 1.155, 1.659, 1, 0, 0 };
+      inputData[21] = new double[] { -0.046, -0.927, 0.669, 0.885, 1, 0, 0 };
+      inputData[22] = new double[] { 1.326, -0.109, 1.101, 1.143, 1, 0, 0 };
+      inputData[23] = new double[] { 0.482, -0.382, 0.939, 0.756, 1, 0, 0 };
+      inputData[24] = new double[] { 0.693, -0.109, 1.047, 1.272, 1, 0, 0 };
+      inputData[25] = new double[] { 1.853, -0.109, 1.479, 1.143, 1, 0, 0 };
+      inputData[26] = new double[] { -0.995, -1.473, 0.344, 0.627, 1, 0, 0 };
+      inputData[27] = new double[] { 1.537, -0.382, 1.317, 0.756, 1, 0, 0 };
+      inputData[28] = new double[] { 0.904, -1.473, 1.047, 0.756, 1, 0, 0 };
+      inputData[29] = new double[] { 1.431, 1.528, 1.209, 1.659, 1, 0, 0 };
+    
+
       
       
+      //Splitting the arrays to 80-20
+      //80% will be training data
+      //20% will be testing data
       
+      //number of tuples used for training the RBM network
+      //Assumes inputs are randomized
+      //Otherwise there may be issues.
       
+      int numTraining = (int) (numInputTuples * .8);
+      double[][] trainingData = new double[numTraining][numInput];
+      //Remaining tuples for testing the RBM network
+      int numTesting = numInputTuples - numTraining;
+      double[][] testingData = new double[numTesting][numInput];
       
+      System.arraycopy(inputData, 0, trainingData, 0, numTraining);
+      System.arraycopy(inputData, numTraining, testingData, 0, numTesting);
+      
+      System.out.println("Printing training data");
+      Helpers.ShowMatrix(trainingData, -1);
+      
+      System.out.println("Printing testing data");
+      Helpers.ShowMatrix(testingData, -1);      
       
       
       
@@ -162,7 +219,7 @@ public class RBMNetwork {
       
       
       //Input Values
-
+      //Given input to be tested.
       //double[] xValues = new double[] { 1.0, -2.0, 3.0 };
       
       double[] xValues = new double[numInput];
