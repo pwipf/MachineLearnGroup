@@ -47,18 +47,12 @@ public class BuildNeuralNet {
 		}
 		// Handle output layer
 		vectors.get(vectors.size() - 1).populateNodeWeights(1);
-		printNN(vectors);
+                // Get ready to write net to file
+                ReadWrite rw = new ReadWrite();
+                rw.writeNeuralNet(vectors);
 	}
 
 	private static void printNN(ArrayList<NNLayer> vectors) {
-
-		int maxRows = Integer.MIN_VALUE;
-		// Find the nnlayer with the most nodes
-		for (int i = 0; i < vectors.size(); i++) {
-			if (vectors.get(i).numNodes() > maxRows) {
-				maxRows = vectors.get(i).numNodes();
-			}
-		}
 		// Outer loop cycles through rows
 		// maxRowSize is the variable used to control this.
 		for (int i = 0; i < vectors.size(); i++) {
