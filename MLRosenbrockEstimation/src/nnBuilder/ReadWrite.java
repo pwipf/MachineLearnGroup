@@ -8,11 +8,12 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
+import java.util.regex.*;
 
 public class ReadWrite {
 
-    PrintStream fout;
-    BufferedReader fin;
+    static PrintStream fout;
+    static BufferedReader fin;
 
     // For writing to a file
     ReadWrite() {
@@ -119,9 +120,52 @@ public class ReadWrite {
         in.close();
         // Create instance of this class to read the specified file
         ReadWrite r = new ReadWrite(fileNames[choice]);
-
+        String curLine;
+        NNLayer curLayer;
+        try {
+            while ((curLine = fin.readLine()) != null) {
+                // If the current line is "num_nodes," and one or more digits...
+                if (curLine.matches("num_nodes,\\d+")) {
+                    curLayer = new NNLayer(parseNumberOfInputs(curLine));
+                    nNet.add(curLayer);
+                }
+                // If the line matches 0 or 1 negative signs, a digit, 0 or 1
+                // periods, 0 or more digits, and 0 or one commas, multiple
+                // times...
+                else if (curLine.matches("(-?\\d.?\\d*,?)*")) {
+                    
+                }
+            }
+        } catch (IOException e) {
+            System.out.printf("%n%nError, could not read from file");
+            System.exit(1);
+        }
         return null;
     }
+    
+    /**
+     * 
+     * @param s
+     * @return 
+     */
+    private static int parseNumberOfInputs(String s) {
+        Pattern p = Pattern.compile("\\d*");
+        return Integer.parseInt(p.matcher(s).group());
+    }
+    
+    /**
+     * 
+     * @param s
+     * @return 
+     */
+    private static double[] parseNumberOfWeights(String s) {
+        String[] weightsAsStrings = s.split(",");
+        double[] weightsAsDoubles = new double[weightsAsStrings.length];
+        for (int i = 0; i < weightsAsStrings.length; i++) {
+            weightsAsDoubles[i] = Double.parseDouble(weightsAsStrings[i]);
+        }
+        return weightsAsDoubles;
+    }   
 
     /**
      *

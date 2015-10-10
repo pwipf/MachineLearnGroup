@@ -30,7 +30,7 @@ public class Node {
 	}
 	
 	// Update weights
-	public void updateWeights(double w) {
+	public void updateWeights(double[] weights) {
 		this.weights = weights;
 	}
         
