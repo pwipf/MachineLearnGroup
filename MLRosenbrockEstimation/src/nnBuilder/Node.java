@@ -15,6 +15,11 @@ public class Node {
 			weights[i] = r.nextDouble() * 2 - 1;
 		}
 	}
+        
+        // Constructor for reading a neural net node in
+        public Node() {
+            
+        }
 	
 	// For building a layer with a specific input (primarily used for the input layer as to
 	// distinguish it from the other layers that fall between -1 and 1

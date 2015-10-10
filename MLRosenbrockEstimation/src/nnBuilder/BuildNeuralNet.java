@@ -50,6 +50,9 @@ public class BuildNeuralNet {
                 // Get ready to write net to file
                 ReadWrite rw = new ReadWrite();
                 rw.writeNeuralNet(vectors);
+                printNN(vectors);
+                System.out.printf("%n");
+                printNN(ReadWrite.readNeuralNet());
 	}
 
 	private static void printNN(ArrayList<NNLayer> vectors) {
@@ -65,6 +68,4 @@ public class BuildNeuralNet {
 			}
 		}
 	}
-
-
 }
