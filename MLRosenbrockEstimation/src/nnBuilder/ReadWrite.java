@@ -137,11 +137,7 @@ public class ReadWrite {
                 // periods, 0 or more digits, and 0 or one commas, multiple
                 // times...
                 else if (curLine.matches("(-?\\d.?\\d*,?)+")) {
-                    // Cycle through the nodes in this layer
-                    for (int i = 0; i < curLayer.numNodes(); i++) {
-                        // Update the nodes weights
-                        curLayer.getNode(i).updateWeights(parseNumberOfWeights(curLine));
-                    }
+                    curLayer.sequentialNodeUpdate().updateWeights(parseNumberOfWeights(curLine)); 
                 }
             }
         } catch (IOException e) {
@@ -172,9 +168,6 @@ public class ReadWrite {
     private static double[] parseNumberOfWeights(String s) {
         String[] weightsAsStrings = s.split(",");
         double[] weightsAsDoubles = new double[weightsAsStrings.length];
-        for (int i = 0; i < weightsAsStrings.length; i++) {
-            System.out.printf(weightsAsStrings[i]);
-        }
         for (int i = 0; i < weightsAsStrings.length; i++) {
             weightsAsDoubles[i] = Double.parseDouble(weightsAsStrings[i]);
         }
