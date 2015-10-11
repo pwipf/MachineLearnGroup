@@ -4,6 +4,7 @@
  */
 package rbmnetwork;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -78,15 +79,31 @@ public class RBMNetwork {
       //80% will be training data
       //20% will be testing data
       
-      //number of tuples used for training the RBM network
-      //Assumes inputs are randomized
-      //Otherwise there may be issues.
+
+
       
+      //Shuffling the input row positions, so that the 80-20 split will be random
+      Random rgen = new Random();  // Random number generator			
+ 
+		for (int i=0; i<inputData.length; i++) {
+		    int randomPosition = rgen.nextInt(inputData.length);
+		    double[] temp = inputData[i];
+		    inputData[i] = inputData[randomPosition];
+		    inputData[randomPosition] = temp;
+		}
+      
+      //number of tuples used for training the RBM network          
       int numTraining = (int) (numInputTuples * .8);
       double[][] trainingData = new double[numTraining][numInput];
+      
+      
       //Remaining tuples for testing the RBM network
       int numTesting = numInputTuples - numTraining;
       double[][] testingData = new double[numTesting][numInput];
+      
+      
+      //Splitting the input Data into two arrays
+      // One for training and the other for testing.
       
       System.arraycopy(inputData, 0, trainingData, 0, numTraining);
       System.arraycopy(inputData, numTraining, testingData, 0, numTesting);
@@ -128,38 +145,41 @@ public class RBMNetwork {
       //centroids[2] = new double[] { 2.0, 2.5, 2.8 };
       //centroids[3] = new double[] { 4.0, 4.5, 4.8 };
       
-      
-      
-      for (int i = 0; i < numGaussian; ++i)
-      {
-        for (int j = 0; j < numInput; ++j)    
-        {   
-        centroids[i][j] = ((Math.random()*20)-10);            //filling it out with random numbers for the time being -10 to 10   
-        }
+      //for (int i = 0; i < numGaussian; ++i)
+      //{
+      //  for (int j = 0; j < numInput; ++j)    
+      //  {   
+      //  centroids[i][j] = ((Math.random()*20)-10);            //filling it out with random numbers for the time being -10 to 10   
+      //  }
           
-      }
+      //}
       
       
+      
+      
+      
+
+      //rn.SetCentroids(centroids);
+      centroids = rn.DoCentroids(trainingData);
       System.out.println("\nSetting centroids (means) to:");
       Helpers.ShowMatrix(centroids, -1);
       System.out.println("Loading centroids into radial net");
-      rn.SetCentroids(centroids);
-
-      
+        
+        
       //Creating Standard Deviations
       //double[] stdDevs = new double[] { 2.22, 3.33, 4.44, 5.55 };
       double[] stdDevs = new double[numGaussian];
-            for (int i = 0; i < stdDevs.length; ++i)
-      {
-            stdDevs[i] = (Math.random()*6)+2;            //filling with random numbers for time being.
-          
-      }
+//            for (int i = 0; i < stdDevs.length; ++i)
+//      {
+//            stdDevs[i] = (Math.random()*6)+2;            //filling with random numbers for time being.
+//          
+//      }
+      
+      stdDevs = rn.DoWidths(centroids); // measure of how far apart centroids are 
       
       
       
-      
-      
-      System.out.println("\nSetting standard deviations (widths) to:");
+      System.out.println("\nSetting common standard deviations (widths) to:");
       Helpers.ShowVector(stdDevs, 2, 4, true);
       System.out.println("Loading standard deviations into radial net");
       rn.SetStdDevs(stdDevs);
@@ -218,7 +238,7 @@ public class RBMNetwork {
       
       
       
-      //Input Values
+      //Input Values for a single tuple to be ran through the network
       //Given input to be tested.
       //double[] xValues = new double[] { 1.0, -2.0, 3.0 };
       
@@ -240,7 +260,7 @@ public class RBMNetwork {
       System.out.println("\nThe output of the RBF network is:");
       Helpers.ShowVector(yValues, 4, 4, true);
 
-      System.out.println("\nEnd RBF network demo\n");
+      System.out.println("\nEnd RBF network\n");
       //Console.ReadLine();
     } // Main
 
