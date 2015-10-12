@@ -1,13 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package rbmnetwork;
 
-/**
- *
- * @author Brendan Burns
- */
+package rbfnetwork;
+
   public class Helpers
   {
     public static void ShowVector(double[] vector, int decimals, int valsPerLine, boolean blankLine)

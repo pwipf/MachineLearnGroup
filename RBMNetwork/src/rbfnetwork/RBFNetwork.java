@@ -1,17 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package rbmnetwork;
+
+package rbfnetwork;
 
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- *
- * @author Brendan Burns
- */
-public class RBMNetwork {
+
+public class RBFNetwork {
     static double error = .90;
     static Random gen=new Random();
 
