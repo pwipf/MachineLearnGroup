@@ -23,24 +23,27 @@ public class RBMNetwork {
       
     Scanner in = new Scanner(System.in);
     System.out.printf("How many inputs values will you be using?  >");
-    int numInput = in.nextInt();
+    int numInput =2;// in.nextInt();
     System.out.printf("%n");
     System.out.printf("How many Gaussian basis functions will you be using?  >");
-    int numGaussian = in.nextInt();
+    int numGaussian=5;// = in.nextInt();
     System.out.printf("%n");  
     System.out.printf("How many Outputs will you have?  >");
-    int numOutput = in.nextInt();
+    int numOutput=1;// = in.nextInt();
+    System.out.printf("What is your EEEEETTTTTAAAAA????  >");
+    double eta=1;// = in.nextDouble();
     System.out.printf("%n");  
       
       //30 data entries, 7 inputs
       //
-      int numInputTuples = 30;
-      double[][] inputData = new double[numInputTuples][7];
+      int numInputTuples = 2000;
+      double[][] inputData = new double[numInputTuples][numInput];
+      double[][] outputData=new double[numInputTuples][numOutput];
       
       
       
       
-      inputData[0] = new double[] { -0.784, 1.255, -1.332, -1.306, 0, 0, 1 };
+  /*    inputData[0] = new double[] { -0.784, 1.255, -1.332, -1.306, 0, 0, 1 };
       inputData[1] = new double[] { -0.995, -0.109, -1.332, -1.306, 0, 0, 1 };
       inputData[2] = new double[] { -1.206, 0.436, -1.386, -1.306, 0, 0, 1 };
       inputData[3] = new double[] { -1.312, 0.164, -1.278, -1.306, 0, 0, 1 };
@@ -72,8 +75,11 @@ public class RBMNetwork {
       inputData[27] = new double[] { 1.537, -0.382, 1.317, 0.756, 1, 0, 0 };
       inputData[28] = new double[] { 0.904, -1.473, 1.047, 0.756, 1, 0, 0 };
       inputData[29] = new double[] { 1.431, 1.528, 1.209, 1.659, 1, 0, 0 };
-    
+  */  
 
+      
+      
+      
       
       
       //Splitting the arrays to 80-20
@@ -96,11 +102,13 @@ public class RBMNetwork {
       //number of tuples used for training the RBM network          
       int numTraining = (int) (numInputTuples * .8);
       double[][] trainingData = new double[numTraining][numInput];
+      double[][] trainingDataOutput = new double[numTraining][numInput];
       
       
       //Remaining tuples for testing the RBM network
       int numTesting = numInputTuples - numTraining;
       double[][] testingData = new double[numTesting][numInput];
+      double[][] testingDataOutput = new double[numTesting][numInput];
       
       
       //Splitting the input Data into two arrays
@@ -244,29 +252,34 @@ public class RBMNetwork {
       rn.SetBiases(oBiases);
       
       
+      for(int i=0;i<numTraining;i++)
+          rn.learnWeightsGradientDescent(trainingData[i], Rosen(trainingData[i]), eta);
+     
+      double sum=0;
+      double[] a=new double[1];
+      double[] y=new double[1];
+      for(int i=0;i<numTesting;i++){
+          a=rn.ComputeOutputs(testingData[i]);
+          y=Rosen(testingData[i]);
+          System.out.println("output: "+a[0]+" should be: "+y[0]);
+          sum+=cost(a ,y );
+      }
+      
+      sum/=numTesting;
+      System.out.println("mean error for "+numTesting+" tests is "+sum);
       
       
-      //Input Values for a single tuple to be ran through the network
-      //Given input to be tested.
-      //double[] xValues = new double[] { 1.0, -2.0, 3.0 };
-      
-      double[] xValues = new double[numInput];
-            for (int i = 0; i < numInput; ++i)
-      {
-            xValues[i] = (Math.random()*10)-5;            //filling with random numbers for time being.
-          
-      }   
-      
+    
       
       
       System.out.println("\nSetting x-input to:");
-      Helpers.ShowVector(xValues, 1, 4, true);
+      //Helpers.ShowVector(xValues, 1, 4, true);
 
       System.out.println("\nComputing the output of the radial net\n");
-      double[] yValues = rn.ComputeOutputs(xValues);
+      //double[] yValues = rn.ComputeOutputs(xValues);
 
-      System.out.println("\nThe output of the RBF network is:");
-      Helpers.ShowVector(yValues, 4, 4, true);
+     //2 System.out.println("\nThe output of the RBF network is:");
+      //Helpers.ShowVector(yValues, 4, 4, true);
 
       System.out.println("\nEnd RBF network\n");
       //Console.ReadLine();
@@ -279,6 +292,25 @@ public class RBMNetwork {
     static double random(double mean, double sd){
 		return gen.nextGaussian()*sd+mean;
 	}
+    
+    	static double[] Rosen(double[] x){
+		double y=0;
+
+		for(int i=0;i<x.length-1;i++){
+			y += ( Math.pow(1-x[i], 2) + 100*Math.pow(x[i+1] - Math.pow(x[i],2) ,2));
+		}
+
+                double[] ya=new double[1];
+                ya[0]=y;
+		return ya;
+	}
+        
+        static double cost(double[] a, double[] y){
+            double sum=0;
+            for(int i=0;i<a.length;i++)
+                sum+=Math.pow(a[i]-y[i],2);
+            return sum/2;
+        }
 
   } // Program
 
