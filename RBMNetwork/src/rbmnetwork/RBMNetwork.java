@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author Brendan Burns
  */
 public class RBMNetwork {
+    static Random gen=new Random();
 
     /**
      * @param args the command line arguments
@@ -186,6 +187,13 @@ public class RBMNetwork {
 
       
       
+      
+      
+      
+      
+      
+      
+      
       //Creating Weights
       double[][] hoWeights = new double[numGaussian][numOutput];
       
@@ -193,7 +201,7 @@ public class RBMNetwork {
       {
         for (int j = 0; j < numOutput; ++j)    
         {
-        hoWeights[i][j] = ((Math.random()*20)-10);            //filling it out with random numbers for the time being -10 to 10   
+        hoWeights[i][j] = random(0, 1);            //filling it out with random numbers for the time being -10 to 10   
         }
           
      }
@@ -223,7 +231,7 @@ public class RBMNetwork {
       double[] oBiases = new double[numOutput];
             for (int i = 0; i < numOutput; ++i)
       {
-            oBiases[i] = (Math.random()+7);            //filling with random numbers for time being.
+            oBiases[i] = random(0, 1);            //filling with random numbers for time being.
           
       }      
       
@@ -263,6 +271,14 @@ public class RBMNetwork {
       System.out.println("\nEnd RBF network\n");
       //Console.ReadLine();
     } // Main
+    
+    
+    
+    
+    
+    static double random(double mean, double sd){
+		return gen.nextGaussian()*sd+mean;
+	}
 
   } // Program
 

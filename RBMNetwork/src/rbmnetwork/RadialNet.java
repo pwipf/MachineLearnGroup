@@ -200,6 +200,7 @@ package rbmnetwork;
     
     
     
+    
         public double[] DoWidths(double[][] centroids)
     {
       // compute widths based on centroids, store into this.widths
