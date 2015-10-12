@@ -26,19 +26,38 @@ public class RBMNetwork {
     int numInput =2;// in.nextInt();
     System.out.printf("%n");
     System.out.printf("How many Gaussian basis functions will you be using?  >");
-    int numGaussian=5;// = in.nextInt();
+    int numGaussian=20;// = in.nextInt();
     System.out.printf("%n");  
     System.out.printf("How many Outputs will you have?  >");
     int numOutput=1;// = in.nextInt();
     System.out.printf("What is your EEEEETTTTTAAAAA????  >");
-    double eta=1;// = in.nextDouble();
+    double eta=.4;// = in.nextDouble();
     System.out.printf("%n");  
       
       //30 data entries, 7 inputs
       //
-      int numInputTuples = 2000;
+      int numInputTuples = 5000;
       double[][] inputData = new double[numInputTuples][numInput];
-      double[][] outputData=new double[numInputTuples][numOutput];
+      //double[][] outputData=new double[numInputTuples][numOutput];
+      
+      
+      int center = 1;
+      double range = 1.5;
+              
+        for (int i = 0; i < numInputTuples; ++i)
+      {
+        for (int j = 0; j < numInput; ++j)    
+        {
+        //inputData[i][0] = .5;
+        //inputData[i][1] = .1;
+                
+                
+                
+        inputData[i][j] =  (Math.random()*range) - center;           //filling it out with random numbers for the time being -10 to 10 
+                //(Math.random()*range) - center;           //filling it out with random numbers for the time being -10 to 10   
+        }
+          
+     }
       
       
       
@@ -250,18 +269,22 @@ public class RBMNetwork {
       Helpers.ShowVector(oBiases, 1, 4, true);
       System.out.println("Loading output biases into radial net");
       rn.SetBiases(oBiases);
-      
-      
-      for(int i=0;i<numTraining;i++)
-          rn.learnWeightsGradientDescent(trainingData[i], Rosen(trainingData[i]), eta);
-     
-      double sum=0;
+
       double[] a=new double[1];
       double[] y=new double[1];
+      
+      for(int i=0;i<numTraining;i++){
+          a=rn.ComputeOutputs(trainingData[i]);
+          y=Rosen(trainingData[i]);    
+           System.out.println("output: "+a[0]+" should be: "+y[0]);
+          rn.learnWeightsGradientDescent(trainingData[i], Rosen(trainingData[i]), eta);
+      }
+      double sum=0;
+
       for(int i=0;i<numTesting;i++){
           a=rn.ComputeOutputs(testingData[i]);
           y=Rosen(testingData[i]);
-          System.out.println("output: "+a[0]+" should be: "+y[0]);
+          //System.out.println("output: "+a[0]+" should be: "+y[0]);
           sum+=cost(a ,y );
       }
       

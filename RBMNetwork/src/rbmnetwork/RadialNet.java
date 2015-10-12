@@ -100,20 +100,25 @@ import static rbmnetwork.MatMath.*;
       for (int j = 0; j < numHidden; ++j) // each hidden node
       {
         double d = Distance(inputs, centroids[j]); // could use a 'distSquared' approach
-        System.out.println("\nHidden[" + j + "] distance = " + d);
+        //System.out.println("\nHidden[" + j + "] distance = " + d);
         double r = -1.0 * (d * d) / (2 * stdDevs[j] * stdDevs[j]);
         double g = Math.exp(r);
-        System.out.println("Hidden[" + j + "] output = " + g);
+        if (Double.isNaN(g))
+        {g = 0;}
+        //System.out.println("Hidden[" + j + "] output = " + g);
         hOutputs[j] = g;
+        
+        //System.out.println("Outputs for hidden nodes:" + g);
       }
 
       for (int k = 0; k < numOutput; ++k)
         outputs[k] = 0.0;
 
-      for (int k = 0; k < numOutput; ++k)
-        for (int j = 0; j < numHidden; ++j)
+      for (int k = 0; k < numOutput; ++k){
+        for (int j = 0; j < numHidden; ++j){
           outputs[k] += (hOutputs[j] * hoWeights[j][k]);
-
+          //System.out.println("hOutputs[j]" + hOutputs[j] + "  hoWeights[j][k]" + hoWeights[j][k]);
+      }}
       for (int k = 0; k < numOutput; ++k)
         outputs[k] += oBiases[k];
 
@@ -125,25 +130,36 @@ import static rbmnetwork.MatMath.*;
 
     public void learnWeightsGradientDescent(double[] xValues, double[] y, double eta){
 
+    
       inputs = xValues;
 
       double[] hOutputs = new double[numHidden]; // hidden node outputs
       for (int j = 0; j < numHidden; ++j) // each hidden node
       {
         double d = Distance(inputs, centroids[j]); // could use a 'distSquared' approach
-        System.out.println("\nHidden[" + j + "] distance = " + d);
+        //System.out.println("Distance: " + d);
+        //System.out.println("\nHidden[" + j + "] distance = " + d);
         double r = -1.0 * (d * d) / (2 * stdDevs[j] * stdDevs[j]);
+
+        //System.out.println("r: " + r);
         double g = Math.exp(r);
-        System.out.println("Hidden[" + j + "] output = " + g);
+        if (Double.isNaN(g))
+        {g = 0;}
+        //System.out.println("g:" + g);
+        //System.out.println("Hidden[" + j + "] output = " + g);
         hOutputs[j] = g;
       }
 
       for (int k = 0; k < numOutput; ++k)
-        outputs[k] = 0.0;
+      {
+          outputs[k] = 0.0;
+      } 
 
-      for (int k = 0; k < numOutput; ++k)
-        for (int j = 0; j < numHidden; ++j)
-          outputs[k] += (hOutputs[j] * hoWeights[j][k]);
+      for (int k = 0; k < numOutput; ++k){
+        for (int j = 0; j < numHidden; ++j){
+          outputs[k] += (hOutputs[j] * hoWeights[j][k]);   //output(s) is equal to the sum of all nodeoutputs * their weight
+        //System.out.println("hOutputs[j]" + hOutputs[j] + "  hoWeights[j][k]" + hoWeights[j][k]);
+        }}
 
       for (int k = 0; k < numOutput; ++k)
         outputs[k] += oBiases[k];
@@ -153,14 +169,17 @@ import static rbmnetwork.MatMath.*;
       
       double[] delta=new double[numOutput];
       for(int i=0;i<numOutput;i++){
-        delta[i] = result[i]-y[i];
-      }
+        delta[i] = (result[i]-y[i])/numHidden;  //Better results with the /numHidden. Don't think it's the source of the problem though
+        //System.out.println("Result:" + result[i]);
+        //System.out.println("Expected Output:" + y[i] );
+        }
       
-      double[][] wDelta = matMult(eta, MatMath.matMult(hOutputs,delta));
       
+      double[][] wDelta = MatMath.matMult(eta, MatMath.matMult(hOutputs,delta));
+
       
-      hoWeights=matAdd(hoWeights,wDelta);
-      oBiases=vecAdd(oBiases, delta);
+      this.hoWeights=matSub(hoWeights,wDelta);
+      this.oBiases=vecSub(oBiases, delta);
       
     }
     
