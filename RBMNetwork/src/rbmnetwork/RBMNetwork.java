@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author Brendan Burns
  */
 public class RBMNetwork {
-    static double error = .99;
+    static double error = .90;
     static Random gen=new Random();
 
     /**
@@ -297,16 +297,16 @@ public class RBMNetwork {
     
       
       
-      System.out.println("\nSetting x-input to:");
+      //System.out.println("\nSetting x-input to:");
       //Helpers.ShowVector(xValues, 1, 4, true);
 
-      System.out.println("\nComputing the output of the radial net\n");
+      //System.out.println("\nComputing the output of the radial net\n");
       //double[] yValues = rn.ComputeOutputs(xValues);
 
      //2 System.out.println("\nThe output of the RBF network is:");
       //Helpers.ShowVector(yValues, 4, 4, true);
 
-      System.out.println("\nEnd RBF network\n");
+      //System.out.println("\nEnd RBF network\n");
       //Console.ReadLine();
     } // Main
     
