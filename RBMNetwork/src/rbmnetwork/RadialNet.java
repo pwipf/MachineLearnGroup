@@ -123,6 +123,8 @@ import static rbmnetwork.MatMath.*;
         outputs[k] += oBiases[k];
 
       double[] result = new double[numOutput];
+      
+      
       result = outputs;
       return result;
     }

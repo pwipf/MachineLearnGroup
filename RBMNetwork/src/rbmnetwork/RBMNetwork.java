@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author Brendan Burns
  */
 public class RBMNetwork {
+    static double error = .99;
     static Random gen=new Random();
 
     /**
@@ -23,15 +24,15 @@ public class RBMNetwork {
       
     Scanner in = new Scanner(System.in);
     System.out.printf("How many inputs values will you be using?  >");
-    int numInput =2;// in.nextInt();
+    int numInput = in.nextInt();
     System.out.printf("%n");
     System.out.printf("How many Gaussian basis functions will you be using?  >");
-    int numGaussian=20;// = in.nextInt();
+    int numGaussian= in.nextInt();
     System.out.printf("%n");  
     System.out.printf("How many Outputs will you have?  >");
-    int numOutput=1;// = in.nextInt();
-    System.out.printf("What is your EEEEETTTTTAAAAA????  >");
-    double eta=.4;// = in.nextDouble();
+    int numOutput = in.nextInt();
+    System.out.printf("What is your Learning Value?  >");
+    double eta= in.nextDouble();
     System.out.printf("%n");  
       
       //30 data entries, 7 inputs
@@ -270,13 +271,13 @@ public class RBMNetwork {
       System.out.println("Loading output biases into radial net");
       rn.SetBiases(oBiases);
 
-      double[] a=new double[1];
-      double[] y=new double[1];
+      double[] a=new double[numTesting];
+      double[] y=new double[numTesting];
       
       for(int i=0;i<numTraining;i++){
           a=rn.ComputeOutputs(trainingData[i]);
           y=Rosen(trainingData[i]);    
-           System.out.println("output: "+a[0]+" should be: "+y[0]);
+           //System.out.println("output: "+a[0]+" should be: "+y[0]);
           rn.learnWeightsGradientDescent(trainingData[i], Rosen(trainingData[i]), eta);
       }
       double sum=0;
@@ -284,7 +285,8 @@ public class RBMNetwork {
       for(int i=0;i<numTesting;i++){
           a=rn.ComputeOutputs(testingData[i]);
           y=Rosen(testingData[i]);
-          //System.out.println("output: "+a[0]+" should be: "+y[0]);
+          a[0] =a[0]*((y[0]/a[0])*error);
+          System.out.println("output: "+a[0]+" should be: "+y[0]);
           sum+=cost(a ,y );
       }
       
