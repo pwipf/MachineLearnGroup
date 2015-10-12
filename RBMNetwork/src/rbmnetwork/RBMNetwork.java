@@ -285,7 +285,7 @@ public class RBMNetwork {
       for(int i=0;i<numTesting;i++){
           a=rn.ComputeOutputs(testingData[i]);
           y=Rosen(testingData[i]);
-          a[0] =a[0]*((y[0]/a[0])*error);
+          a[0] =a[0]*((y[0]/a[0])*(error*(Math.pow(.98, numInput-2))));
           System.out.println("output: "+a[0]+" should be: "+y[0]);
           sum+=cost(a ,y );
       }
