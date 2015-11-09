@@ -27,7 +27,7 @@ public class BackProp{
 		////////////////////////////////////////////////////
 		// main setting of parameters
 		//
-		int[]	size=new int[]{nin,10,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
+		int[]	size=new int[]{nin,20,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
 
 		// Backprop parameters
 		int	epochs =500;  // number of times to run the training example list through the backprop.
@@ -35,10 +35,10 @@ public class BackProp{
 		double	mu =.1;   // momentum coefficient
 
 		// Differential Evolution parameters
-		int maxEpochs=1000;
-		int npop   =10;
+		int maxEpochs=800;
+		int npop   =5;
 		double beta=.5;
-		double rho =.2;
+		double rho =.7;
 
 
 		int	examples=dataFile.data.length; // actual number of data records in the file
@@ -71,10 +71,10 @@ public class BackProp{
 		int totalRight=0,totalWrong=0,color=0;
 
 		for(int fold=0;fold<10;fold++){
-			System.out.println("\nFold "+fold);
+			System.out.println("\nFold "+(fold+1));
 
 			//create a new MLP
-			Network net=new Network(size,act);
+			Network net=new Network(size);
 
 			setPenColor(colorlist[color++%10]);
 
@@ -107,7 +107,7 @@ public class BackProp{
 			///////////////////////////////////////////////////////////////
 			// send the network the training data and train it.
 			System.out.println("training on examples "+firstTrainIndex+"-"+lastTrainIndex);
-
+//pick a training alg
 			//net.trainBackprop(trainx, trainy, epochs, eta, mu);
 			net.trainDiffEv(trainx, trainy, maxEpochs, npop, beta, rho);
 

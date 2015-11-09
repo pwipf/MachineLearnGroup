@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package multiLayerPerceptron;
 
 import java.util.Random;
@@ -11,14 +8,6 @@ import static multiLayerPerceptron.MatMath.*;
 import static multiLayerPerceptron.StdDraw.*;
 
 // Network class.
-// Has an array of inner class Layer objects, which each store the network state for that layer,
-// including weight vector, velocity vector, bias value, and activation type for each node.
-// Actually the activation type is for the layer. Could set it for each node but this would be
-// tedious and seems very unhelpful to implement.
-//
-// For approximating a real valued function we find it necessary to use a linear activation on the
-// output layer, to allow values outside the range (0,1), and sigmoid activations on all other
-// layers to avoid the redundancy of linear nodes.
 //
 // The index scheme is: Layer object 0 is the input layer, so it is mostly ignored.
 // The rest of the layers are the hidden layers with the last one being the output.
@@ -29,63 +18,35 @@ class Network{
 	int layers;		// sizes.length
 	int nInputs, nOutputs;
 
-	int counter=0;
+	double[][][] w;
+	double[][][] v;
+	double[][]   b;
 
   static Random gen=new Random();
 
-	class Layer{
-		double[][] w;				// weight
-		double[][] v;				// velocity (for momentum)
-		double[]   b;				// bias
-		boolean    linAct;	// activation function (for layer)
-		Layer(int n, int nFrom, boolean linAct){
-			w=new double[n][nFrom];
-			v=new double[n][nFrom];
-			b=new double[n];
-			this.linAct=linAct;
-		}
-	}
-
-	// the Network, an array of Layers
-	Layer[] net;
-
 	// constructor
 	// set size, activation functions. True is linear
-	Network(int[] sizes, boolean[] LinearAct){
+	Network(int[] sizes){
 		this.sizes=sizes;
 		layers=sizes.length;
 		nInputs=sizes[0];
 		nOutputs=sizes[sizes.length-1];
 
-		net=new Layer[layers];
-		for(int i=1;i<layers;i++)
-			net[i]=new Layer(sizes[i],sizes[i-1],LinearAct[i]);
-
-		// set initial random weights/biases. Also velocities set to 0.
-		initializeWeightsBiases();
-
-
-	}
-
-	// initializeWeightsBiases()
-	// compresses initial weights deviation from mean 0
-	// to avoid early saturation.
-	private void initializeWeightsBiases() {
-		for (int l = 1; l < layers; l++) {
-			for (int i = 0; i < sizes[l]; i++) {
-				net[l].b[i] = random(0, 1);
-				for (int j = 0; j < sizes[l - 1]; j++){
-					net[l].w[i][j] = random(0, 1);// /Math.sqrt(sizes[l-1]));
-					net[l].v[i][j] = 0; //velocity starts at zero.
+		w=new double[layers][][];
+		v=new double[layers][][];
+		b=new double[layers][];
+		for(int l=1;l<layers;l++){
+			w[l]=new double[sizes[l]][sizes[l-1]];
+			v[l]=new double[sizes[l]][sizes[l-1]];
+			b[l]=new double[sizes[l]];
+			for(int i=0;i<sizes[l];i++){
+				for(int j=0;j<sizes[l-1];j++){
+					w[l][i][j]=gen.nextGaussian();
+					v[l][i][j]=0;
 				}
+				b[l][i]=gen.nextGaussian();
 			}
 		}
-	}
-
-	// random()
-	// returns gaussian distr. with mean and sd
-	double random(double mean, double sd){
-		return gen.nextGaussian()*sd+mean;
 	}
 
 	// feedForward()
@@ -94,13 +55,8 @@ class Network{
 	// (Had better be the same as the feedForward step in the backprop function below!)
 	double[] feedForward(double[] input){
 		double[] a = input;
-		double[] z;
 		for(int l=1;l<layers;l++){
-			z=vecAdd(matMult(net[l].w,a), net[l].b);
-			if(net[l].linAct)
-				a=z;
-			else
-				a=sigmoid(z);
+			a=sigmoid(vecAdd(matMult(w[l],a), b[l]));
 		}
 		return a;
 	}
@@ -124,11 +80,10 @@ class Network{
 		double maxe=0;// for graph
 
 		for(int e=0;e<epochs;e++){
-			//System.out.print(e+" ");
 			shuffle(input,output,size);
 			double error=0;
 			for(int i=0;i<size;i++){
-				backProp(input,output,i,i+1,eta,mu);
+				backProp(input[i],output[i],eta,mu);
 				error+=ssCost(feedForward(input[i]),output[i]);
 			}
 
@@ -142,7 +97,7 @@ class Network{
 	// backProp()
 	// learning algorithm.
 	// Runs one "mini-batch", accumulates weight and bias adjustments,  then makes updates.
-	void backProp(double[][] input, double[][] y, int batchStart, int batchEnd, double eta, double mu){
+	void backProp(double[] input, double[] y, double eta, double mu){
 
 		// store the activations, delta errors, and inputs (z) to each neruon
 		// for use in the backpropogation step.
@@ -150,68 +105,32 @@ class Network{
 		double[][] delta = new double[layers][];
 		double[][] z = new double[layers][]; // z is the vector to store "what went into the activation function"
 
-		double[][][] deltaW=new double[layers][][]; // array to store accumulated weight updates
-		double[][] deltaB=new double[layers][];			// array to store accumulated bias updates
-		for(int i=1;i<layers;i++){//initialize
-			deltaW[i]=new double[net[i].w.length][net[i].w[0].length];
-			deltaB[i]=new double[net[i].b.length];
+		a[0]=input; // activation of first layer is simply the input
+		int last=layers-1;
+
+		//feedForward, saving z's and a's
+		for(int l=1;l<layers;l++){
+			z[l]=vecAdd(matMult(w[l],a[l-1]), b[l]);
+			a[l]=sigmoid(z[l]);
 		}
 
-		//backprop a mini-batch and accumulate the update for weights and biases
-		//System.out.println("start mini-batch");
-		for(int i=batchStart;i<batchEnd;i++){
-			a[0]=input[i]; // activation of first layer is simply the input
-			int last=layers-1;
+		// get cost vector at output, to start the backpropogation
+		double[] cost=costDeriv(a[last], y);
 
-			//feedForward, saving z's and a's
-			for(int l=1;l<layers;l++){
-				z[l]=vecAdd(matMult(net[l].w,a[l-1]), net[l].b);
-				if(net[l].linAct)
-					a[l]=z[l]; //linear final layer activation
-				else
-					a[l]=sigmoid(z[l]);
-			}
+		delta[last] = vElemMult(cost, sigmoidDeriv(z[last]));
 
 
-			// remove, this was to make sure we are using the same feedforward for training as for testing.
-			if(a[last][0] != feedForward(input[i])[0])
-				throw new RuntimeException("something fishy "+a[last][0]+", "+feedForward(input[i])[0]);
-
-
-			// get cost vector at output, to start the backpropogation
-			double[] cost=costDeriv(a[last], y[i]);
-			//System.out.println("a: "+a[last][0]+" should be "+y[i][0]+" SSE: "+ssCost(a[last],y[i])[0]);
-
-			if(net[last].linAct)
-				delta[last] = cost; // deriv of linear is 1
-			else
-				delta[last] = vElemMult(cost, sigmoidDeriv(z[last]));
-
-
-			//delta[last] = vecMult(delta[last],y[0]);
-
-			// backprop!!!
-			for(int l=layers-2;l>=1;l--){
-				if(net[l].linAct)
-					delta[l] = matMult( transpose(net[l+1].w), delta[l+1]); // deriv of linear is 1
-				else
-					delta[l] = vElemMult( matMult( transpose(net[l+1].w), delta[l+1]), sigmoidDeriv(z[l]));
-			}
-
-			for(int l=1;l<layers;l++){
-				deltaW[l] =matAdd(deltaW[l], matMult(delta[l],a[l-1])); // add up the adjustment to each weight/bias
-				deltaB[l] =vecAdd(deltaB[l], delta[l]);
-			}
-		} // end mini-batch
+		// backprop!!!
+		for(int l=layers-2;l>=1;l--){
+			delta[l] = vElemMult( matMult( transpose(w[l+1]), delta[l+1]), sigmoidDeriv(z[l]));
+		}
 
 		// update weights, biases (gradient descent)
-		double avg=eta/(batchEnd-batchStart);
 		for(int l=1;l<layers;l++){
-
-			net[l].v = matSub(matMult(mu, net[l].v), matMult(avg,deltaW[l]));
-			net[l].w = matAdd(net[l].w, net[l].v);
-			//net[l].w = matSub(net[l].w, matMult(avg,deltaW[l]));
-			net[l].b = vecSub(net[l].b, vecMult(avg, delta[l]));
+			v[l] = matSub(matMult(mu, v[l]), matMult(eta,matMult(delta[l],a[l-1])));
+			w[l] = matAdd(w[l], v[l]);
+			//w[l] = matSub(w[l], matMult(eta,matMult(delta[l],a[l-1])));
+			b[l] = vecSub(b[l], vecMult(eta, delta[l]));
 		}
 	}
 
@@ -247,14 +166,12 @@ class Network{
 			throw new RuntimeException("Output size doesn't match network");
 
 
-		//initialize population. Each member is a weight matrix.
+		//initialize population. Each member is a bunch of weights and biases.
 		Member[] population=new Member[npop];
 		for(int i=0;i<npop;i++){
 			population[i]=new Member();
 			population[i].initRandom();
 		}
-
-		System.out.println("Created population (size "+npop+")");
 
 		//////////////////////
 		// run DE algorithm
@@ -301,9 +218,9 @@ class Network{
 		for(int l=1;l<layers;l++){
 			for(int i=0;i<sizes[l];i++){
 				for(int j=0;j<sizes[l-1];j++){
-					net[l].w[i][j]=population[best].w[l][i][j];
+					w[l][i][j]=population[best].w[l][i][j];
 				}
-				net[l].b[i]=population[best].b[l][i];
+				b[l][i]=population[best].b[l][i];
 			}
 		}
 	}
