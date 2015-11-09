@@ -161,7 +161,7 @@ public class MLPTester{
 				sd/=10;
 				sd=Math.sqrt(sd);
 
-				System.out.println("Accuracy:\n\tmean: "+mean+"\n\tstandard dev: "+sd+"\n");
+				System.out.println("Accuracy:\n\tmean: "+mean+"%\n\tstandard dev: "+sd+"%\n");
 
 				String gfilename=filelist[file]+"_"+algname+".jpg";
 				save(gfilename);
