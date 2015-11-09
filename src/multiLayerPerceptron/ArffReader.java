@@ -45,7 +45,6 @@ public class ArffReader {
 				continue;
 
 			Scanner lineScan=new Scanner(line);
-			lineScan.useDelimiter(" ");
 			String token =lineScan.next();
 			if(token.equalsIgnoreCase("@DATA"))
 				break;
@@ -53,12 +52,16 @@ public class ArffReader {
 				System.out.println("Relation: "+lineScan.next());
 			}
 			if(token.equalsIgnoreCase("@ATTRIBUTE")){
-				lineScan.useDelimiter("'");
-				lineScan.next();
 				nAttributes++;
-				attName.add(lineScan.next());
-				lineScan.useDelimiter(" ");
-				lineScan.next();
+				if(lineScan.findInLine("'")!=null){
+					lineScan.useDelimiter("'");
+					attName.add(lineScan.next());
+					lineScan.reset();
+					lineScan.next();
+				}
+				else{
+					attName.add(lineScan.next());
+				}
 				String type=lineScan.next();
 				if(type.equalsIgnoreCase("REAL") || type.equalsIgnoreCase("NUMERIC")
 								|| type.equalsIgnoreCase("INTEGER")){
@@ -85,7 +88,10 @@ public class ArffReader {
 		ArrayList<double[]> dataList =new ArrayList<>();
 		ArrayList<Integer>  classList=new ArrayList<>();
 		while(scan.hasNext()){
-			Scanner scanLine=new Scanner(scan.nextLine());
+			String current=scan.nextLine();
+			if(current==null || current.length()==0 || current.charAt(0)=='%')
+				continue;
+			Scanner scanLine=new Scanner(current);
 			scanLine.useDelimiter(",");
 			double[] dList=new double[nAttributes-1];
 			int theClass=0;

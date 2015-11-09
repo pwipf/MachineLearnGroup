@@ -13,7 +13,7 @@ public class BackProp{
 
 	public static void main(String[] args) {
 
-		String filename="bankNote.arff";
+		String filename="iris.arff";
 		ArffReader dataFile=new ArffReader(filename);
 
 		setupGraphic(); // simple graph to show realtime squared error for each epoch
@@ -28,9 +28,18 @@ public class BackProp{
 		// main setting of parameters
 		//
 		int[]	size=new int[]{nin,10,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
-		int	epochs=100;  // number of times to run the training example list through the backprop.
-		double	eta=.05; // learning rate
-		double	mu=.1;   // momentum coefficient
+
+		// Backprop parameters
+		int	epochs =500;  // number of times to run the training example list through the backprop.
+		double	eta=.1; // learning rate
+		double	mu =.1;   // momentum coefficient
+
+		// Differential Evolution parameters
+		int maxEpochs=1000;
+		int npop   =10;
+		double beta=.5;
+		double rho =.2;
+
 
 		int	examples=dataFile.data.length; // actual number of data records in the file
 
@@ -97,8 +106,10 @@ public class BackProp{
 
 			///////////////////////////////////////////////////////////////
 			// send the network the training data and train it.
-			net.train(trainx, trainy, epochs, eta, mu);
 			System.out.println("training on examples "+firstTrainIndex+"-"+lastTrainIndex);
+
+			//net.trainBackprop(trainx, trainy, epochs, eta, mu);
+			net.trainDiffEv(trainx, trainy, maxEpochs, npop, beta, rho);
 
 			/////////////////////////////////////////////////////////////
 			// test using simply the net.feedForward function, then choose the output node
@@ -128,7 +139,7 @@ public class BackProp{
 			System.out.println((double)numRight/(numRight+numWrong)*100+"% correct");
 		}
 
-		System.out.println("\nTotal: "+totalRight/(totalRight+totalWrong)*100+"% correct");
+		System.out.println("\nTotal: "+(double)totalRight/(totalRight+totalWrong)*100+"% correct");
 	}//main
 
 
