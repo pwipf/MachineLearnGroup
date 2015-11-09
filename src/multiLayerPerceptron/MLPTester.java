@@ -54,7 +54,7 @@ public class MLPTester{
 						outputVector[i][j]=0;
 
 
-			System.out.println("\nFile: "+filelist[file]);
+			System.out.println("File: "+filelist[file]);
 			System.out.println("Number examples: "+examples);
 			System.out.print("Number of attributes: "+nin);
 			if(nin==4)System.out.print(" (Oops, it looked like 5 on UCI but they count the class)");
@@ -161,7 +161,7 @@ public class MLPTester{
 				sd/=10;
 				sd=Math.sqrt(sd);
 
-				System.out.println("Accuracy:\n\tmean: "+mean+"\n\tstandard dev: "+sd);
+				System.out.println("Accuracy:\n\tmean: "+mean+"\n\tstandard dev: "+sd+"\n");
 
 				String gfilename=filelist[file]+"_"+algname+".jpg";
 				save(gfilename);
