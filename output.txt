@@ -1,0 +1,160 @@
+Relation: data_banknote_authentication
+
+File: banknote
+Number examples: 1372
+Number of attributes: 4 (Oops, it looked like 5 on uci but they count the class
+Number of classifications: 2
+
+Alg: Backpropogation
+Accuracy:
+	mean: 99.92700729927007
+	standard dev: 0.21897810218978006
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 96.71532846715328
+	standard dev: 4.549618114524795
+Relation: mammographic_masses
+
+File: mammograph
+Number examples: 830
+Number of attributes: 5
+Number of classifications: 2
+
+Alg: Backpropogation
+Accuracy:
+	mean: 78.79518072289157
+	standard dev: 5.500102270126907
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 75.54216867469879
+	standard dev: 5.308045969135105
+Relation: breast-cancer-wisconsin-weka.filters.unsupervised.attribute.Remove-R1
+
+File: breastcancer
+Number examples: 683
+Number of attributes: 9
+Number of classifications: 2
+
+Alg: Backpropogation
+Accuracy:
+	mean: 94.41176470588235
+	standard dev: 4.302570246566996
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 92.49999999999999
+	standard dev: 5.89887385886223
+Relation: 'wine-weka.filters.unsupervised.attribute.Reorder-R2,3,4,5,6,7,8,9,10,11,12,13,14,1'
+
+File: wine_cultivar
+Number examples: 178
+Number of attributes: 13
+Number of classifications: 3
+
+Alg: Backpropogation
+Accuracy:
+	mean: 37.05882352941177
+	standard dev: 33.59127420063349
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 52.35294117647059
+	standard dev: 40.70741241599048
+Relation: winequality-red
+
+File: wine_quality
+Number examples: 1599
+Number of attributes: 11
+Number of classifications: 6
+
+Alg: Backpropogation
+Accuracy:
+	mean: 48.867924528301884
+	standard dev: 5.893521392084339
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 42.76729559748428
+	standard dev: 11.487245340207169
+Relation: pima-indians-diabetes
+
+File: pima-indians-diabetes
+Number examples: 768
+Number of attributes: 8
+Number of classifications: 2
+
+Alg: Backpropogation
+Accuracy:
+	mean: 65.13157894736841
+	standard dev: 7.425763715538139
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 65.0
+	standard dev: 5.335035508608761
+Relation: cmc
+
+File: cmc
+Number examples: 1473
+Number of attributes: 9
+Number of classifications: 3
+
+Alg: Backpropogation
+Accuracy:
+	mean: 30.476190476190474
+	standard dev: 22.81255774714284
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 35.64625850340136
+	standard dev: 28.07670156568359
+Relation: fertility
+
+File: fertility
+Number examples: 100
+Number of attributes: 9
+Number of classifications: 2
+
+Alg: Backpropogation
+Accuracy:
+	mean: 88.0
+	standard dev: 11.661903789690601
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 88.0
+	standard dev: 11.661903789690601
+Relation: heart
+
+File: heart
+Number examples: 270
+Number of attributes: 13
+Number of classifications: 2
+
+Alg: Backpropogation
+Accuracy:
+	mean: 60.74074074074074
+	standard dev: 9.543776834611203
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 60.740740740740726
+	standard dev: 7.804187965076105
+Relation: glass
+
+File: glass
+Number examples: 214
+Number of attributes: 9
+Number of classifications: 6
+
+Alg: Backpropogation
+Accuracy:
+	mean: 24.76190476190476
+	standard dev: 38.023742433670726
+
+Alg: Differential Evolution
+Accuracy:
+	mean: 1.9047619047619047
+	standard dev: 4.364357804719847
