@@ -13,11 +13,12 @@ public class BackProp{
 
 	public static void main(String[] args) {
 
+		String filename="D:\\Data\\bankNote.arff";
+		ArffReader dataFile=new ArffReader(filename);
+		
 		setupGraphic(); // simple graph to show realtime squared error for each epoch
 		                // different color for each fold of the 10 folds
 
-		String filename="D:\\Data\\bankNote.arff";
-		ArffReader dataFile=new ArffReader(filename);
 
 		int nin=dataFile.nAttributes; // number of attributes from file
 		int nout=dataFile.nClasses;		// number of classes=number of output nodes=nodes in last layer
