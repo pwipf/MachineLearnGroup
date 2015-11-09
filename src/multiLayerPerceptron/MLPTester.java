@@ -27,7 +27,7 @@ public class MLPTester{
 			////////////////////////////////////////////////////
 			// main setting of parameters
 			//
-			int[]	size=new int[]{nin,10,20,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
+			int[]	size=new int[]{nin,20,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
 
 			// Backprop parameters
 			int	epochs =1000;  // number of times to run the training example list through the backprop.
@@ -35,10 +35,10 @@ public class MLPTester{
 			double	mu =.1;   // momentum coefficient
 
 			// Differential Evolution parameters
-			int maxGenerations=1000;
-			int npop   =10;
-			double beta=.5;
-			double rho =.5;
+			int maxGenerations=500;
+			int npop   =8;
+			double beta=1;
+			double rho =.6;
 
 
 			int	examples=dataFile.data.length; // actual number of data records in the file
@@ -56,8 +56,9 @@ public class MLPTester{
 
 			System.out.println("\nFile: "+filelist[file]);
 			System.out.println("Number examples: "+examples);
-			System.out.println("Number of attributes: "+nin);
-			System.out.println("Number of classifications: "+nout);
+			System.out.print("Number of attributes: "+nin);
+			if(nin==4)System.out.print(" (Oops, it looked like 5 on UCI but they count the class)");
+			System.out.println("\nNumber of classifications: "+nout);
 
 
 			for(int alg=0;alg<2;alg++){//0=backprop, 1=diffev
@@ -145,17 +146,18 @@ public class MLPTester{
 							wrong[fold]++;
 					}
 
+					//System.out.println("fold: "+fold+" right: "+right[fold]+" wrong: "+wrong[fold]);
 
 					scale=net.getScale();
 				}
 
 				double mean=0;
-				for(int i=0;i<10;i++)
-					mean+=right[i]/(right[i]+wrong[i])*100;
-				mean/=10;
 				double sd=0;
 				for(int i=0;i<10;i++)
-					sd+=Math.pow((right[i]/(right[i]+wrong[i])*100)-mean, 2);
+					mean+=(double)right[i]/(right[i]+wrong[i])*100;
+				mean/=10;
+				for(int i=0;i<10;i++)
+					sd+=Math.pow(((double)right[i]/(right[i]+wrong[i])*100)-mean, 2);
 				sd/=10;
 				sd=Math.sqrt(sd);
 
