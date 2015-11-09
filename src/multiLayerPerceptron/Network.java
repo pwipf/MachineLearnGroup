@@ -18,6 +18,8 @@ class Network{
 	int layers;		// sizes.length
 	int nInputs, nOutputs;
 
+	double scale;
+
 	double[][][] w;
 	double[][][] v;
 	double[][]   b;
@@ -26,11 +28,13 @@ class Network{
 
 	// constructor
 	// set size, activation functions. True is linear
-	Network(int[] sizes){
+	Network(int[] sizes, double scale){
 		this.sizes=sizes;
 		layers=sizes.length;
 		nInputs=sizes[0];
 		nOutputs=sizes[sizes.length-1];
+
+		this.scale=scale;
 
 		w=new double[layers][][];
 		v=new double[layers][][];
@@ -77,8 +81,6 @@ class Network{
 			throw new RuntimeException("Output size doesn't match network");
 
 
-		double maxe=0;// for graph
-
 		for(int e=0;e<epochs;e++){
 			shuffle(input,output,size);
 			double error=0;
@@ -87,10 +89,10 @@ class Network{
 				error+=ssCost(feedForward(input[i]),output[i]);
 			}
 
-			if(e==0)//for graph
-				maxe=error/size;
+			if(scale==0)//for graph
+				scale=error/size;
 			//System.out.println(error/trains);
-			point(map(e,0,epochs,.05,1),map(error/size,0,maxe,.05,1));//graph
+			point(map(e,0,epochs,.05,1),map(error/size,0,scale,.05,1));//graph
 		}
 	}
 
@@ -329,4 +331,6 @@ class Network{
 		}
 		return y;
 	}
+
+	double getScale(){return scale;}
 }
