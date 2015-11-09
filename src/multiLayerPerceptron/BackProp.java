@@ -8,7 +8,7 @@ import static multiLayerPerceptron.StdDraw.*;
 public class BackProp{
 
 	static Random gen=new Random();
-	static Color[] colorlist={BLACK,YELLOW,BLUE,DARK_GRAY,CYAN,GRAY,GREEN,MAGENTA,ORANGE,PINK};
+	static Color[] colorlist={BLACK,BOOK_BLUE,RED,BLUE,CYAN,GRAY,GREEN,MAGENTA,ORANGE,PINK};
 
 
 	public static void main(String[] args) {
@@ -24,22 +24,25 @@ public class BackProp{
 		int nout=dataFile.nClasses;		// number of classes=number of output nodes=nodes in last layer
 
 
-		int[]	size=new int[]{nin,10,nout}; // the number of nodes in each layer.
+		////////////////////////////////////////////////////
+		// main setting of parameters
+		//
+		int[]	size=new int[]{nin,10,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
 		int	epochs=100;  // number of times to run the training example list through the backprop.
 		double	eta=.05; // learning rate
 		double	mu=.1;   // momentum coefficient
 
-		int	examples=dataFile.data.length;
+		int	examples=dataFile.data.length; // actual number of data records in the file
 
 		boolean[] act=new boolean[size.length]; //this array is the activation type for each layer.
 																						//true is linear, false is sigmoid
-		for(int i=0;i<size.length;i++)
+		for(int i=0;i<size.length;i++)          // I think for classification sigmoid all the way through is best.
 			act[i]=false;
-		//act[size.length-1]=true; // last node is linear activation
 
+
+		// need to setup an output vector all zeros with a 1 at exactly one position, the proper class.
 		double[][] outputVector= new double[examples][nout];
 
-		// set the output vectors y. Each output node
 		for(int i=0;i<examples;i++)
 			for(int j=0;j<nout;j++)
 				if((int)dataFile.dataClass[i]==j)
@@ -53,14 +56,16 @@ public class BackProp{
 		System.out.println("Number of attributes: "+nin);
 		System.out.println("Number of classifications: "+nout);
 
-		////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////
 		// 10 fold X-Validation
 
 		int totalRight=0,totalWrong=0,color=0;
 
 		for(int fold=0;fold<10;fold++){
 			System.out.println("\nFold "+fold);
-			BackpropNetwork net=new BackpropNetwork(size,act);
+
+			//create a new MLP
+			Network net=new Network(size,act);
 
 			setPenColor(colorlist[color++%10]);
 
@@ -72,6 +77,8 @@ public class BackProp{
 			int firstTestIndex=(firstTrainIndex+ntrains)%examples;
 			int lastTestIndex=((firstTestIndex+ntests)-1)%examples;
 
+			// create arrays for the training and testing sets, then fill them from the "master" (dataFile.data)
+			// X IS THE INPUT VECTOR AND Y IS THE OUTPUT VECTOR
 			double[][] trainx=new double[ntrains][];
 			double[][] trainy=new double[ntrains][];
 			double[][] testx=new double[ntests][];
@@ -87,10 +94,15 @@ public class BackProp{
 			}
 
 
+
+			///////////////////////////////////////////////////////////////
+			// send the network the training data and train it.
+			net.train(trainx, trainy, epochs, eta, mu);
 			System.out.println("training on examples "+firstTrainIndex+"-"+lastTrainIndex);
 
-			net.train(trainx, trainy, epochs, eta, mu);
-
+			/////////////////////////////////////////////////////////////
+			// test using simply the net.feedForward function, then choose the output node
+			// with the highest number (they are all between 0 and 1 if sigmoid activation)
 			System.out.println("testing on examples "+firstTestIndex+"-"+lastTestIndex);
 			int numRight=0;
 			int numWrong=0;
@@ -120,8 +132,8 @@ public class BackProp{
 	}//main
 
 
+  // stuff for graphical output
 	static void setupGraphic(){
-		// stuff for graphical output
 		setCanvasSize(800,600);
 		setPenRadius(.001);
 		line(0,.05,1,.05);

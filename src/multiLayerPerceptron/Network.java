@@ -24,7 +24,7 @@ import static multiLayerPerceptron.StdDraw.*;
 // The rest of the layers are the hidden layers with the last one being the output.
 // The weights, etc. are indexed i'th node, j'th input.
 //
-class BackpropNetwork{
+class Network{
 	int[] sizes;	// sizes[0]=number of input nodes, sizes[len-1]=number of ouput nodes
 	int layers;		// sizes.length
 	int nInputs, nOutputs;
@@ -51,7 +51,7 @@ class BackpropNetwork{
 
 	// constructor
 	// set size, activation functions. True is linear
-	BackpropNetwork(int[] sizes, boolean[] LinearAct){
+	Network(int[] sizes, boolean[] LinearAct){
 		this.sizes=sizes;
 		layers=sizes.length;
 		nInputs=sizes[0];
