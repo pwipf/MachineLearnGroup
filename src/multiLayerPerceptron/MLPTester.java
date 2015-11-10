@@ -12,9 +12,13 @@ public class MLPTester{
 	static String[] filelist={"banknote","mammograph","breastcancer","wine_cultivar","wine_quality",
 		"pima-indians-diabetes","cmc","fertility","heart","glass"};
 
+	static enum Algs{Backprop, MuLambda, DiffEv, GeneticAlg};
 
+
+	// main()
 	public static void main(String[] args) {
 
+		double[][][] parameters=new double[10][4][]; //file dataset, then algorithm, then parameter #
 
 		for(int file=0;file<10;file++){
 
@@ -27,18 +31,15 @@ public class MLPTester{
 			////////////////////////////////////////////////////
 			// main setting of parameters
 			//
-			int[]	size=new int[]{nin,20,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
+			int[]	sizes=new int[]{nin,20,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
 
-			// Backprop parameters
-			int	epochs =1000;  // number of times to run the training example list through the backprop.
-			double	eta=.0005; // learning rate
-			double	mu =.1;   // momentum coefficient
-
-			// Differential Evolution parameters
-			int maxGenerations=500;
-			int npop   =8;
-			double beta=1;
-			double rho =.6;
+			//todo read parameters from file
+			for(int i=0;i<10;i++){
+				parameters[i][Algs.Backprop.ordinal()]  =new double[]{100,.005,.3}; //epochs, eta, mu
+				parameters[i][Algs.MuLambda.ordinal()]  =new double[]{}; //
+				parameters[i][Algs.DiffEv.ordinal()]    =new double[]{500,8,.8,.6}; //maxGenerations, popSize, beta, pi
+				parameters[i][Algs.GeneticAlg.ordinal()]=new double[]{}; //
+			}
 
 
 			int	examples=dataFile.data.length; // actual number of data records in the file
@@ -61,9 +62,15 @@ public class MLPTester{
 			System.out.println("\nNumber of classifications: "+nout);
 
 
-			for(int alg=0;alg<2;alg++){//0=backprop, 1=diffev
-				String algname=(alg==0? "Backpropogation": (alg==1? "Differential Evolution":
-								(alg==2? "Something else": "The Last One")));
+			for(Algs alg: Algs.values()){ // loop through all the algorithms
+
+				if(alg==Algs.MuLambda)
+					continue;// not yet implemented
+				if(alg==Algs.GeneticAlg)
+					continue;// not yet implemented
+
+				String algname=(alg==Algs.Backprop? "Backpropogation": (alg==Algs.MuLambda? "MuLambda":
+								(alg==Algs.DiffEv? "Differential Evolution": "GeneticAlg")));
 				System.out.println("\nAlg: "+algname);
 
 				setupGraphic(); // simple graph to show realtime squared error for each epoch
@@ -80,9 +87,6 @@ public class MLPTester{
 
 				for(int fold=0;fold<10;fold++){
 					//System.out.println("\nFold "+(fold+1));
-
-					//create a new MLP
-					Network net=new Network(size,scale);
 
 					setPenColor(colorlist[color++%10]);
 
@@ -117,12 +121,23 @@ public class MLPTester{
 
 					//System.out.println("training on examples "+firstTrainIndex+"-"+lastTrainIndex);
 
-					if(alg==0){
-						net.trainBackprop(trainx, trainy, epochs, eta, mu);
+					Network net=null;
+					switch(alg){
+						case Backprop:
+							net=new BackpropNetwork(sizes,scale);
+							break;
+						case MuLambda:
+							//net=new MuLambdaNetwork(sizes,scale);
+							break;
+						case DiffEv:
+							net=new DiffEvNetwork(sizes,scale);
+							break;
+						case GeneticAlg:
+							//net=new GeneticAlgNetwork(sizes,scale);
+							break;
 					}
-					else if(alg==1){
-						net.trainDiffEv(trainx, trainy, maxGenerations, npop, beta, rho);
-					}
+
+					net.train(trainx,trainy,parameters[file][alg.ordinal()]);
 
 					/////////////////////////////////////////////////////////////
 					// test using simply the net.feedForward function, then choose the output node
