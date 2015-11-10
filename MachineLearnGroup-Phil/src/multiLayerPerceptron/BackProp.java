@@ -42,10 +42,10 @@ public class BackProp{
                 
                 //Genetic Alg parameters
                 int maxEpochs2=100;
-                int npop2 = 1000;
+                int npop2 = 100;
                 double crossoverRate = .25;
-                double mutationPercentChange = .15;
-                double mutationChance = .00015;
+                double mutationPercentChange = .2;
+                double mutationChance = .8;
 
 
 		int	examples=dataFile.data.length; // actual number of data records in the file
