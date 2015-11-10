@@ -16,9 +16,9 @@ import static multiLayerPerceptron.StdDraw.*;
  */
 public class GeneticAlgNetwork extends Network {
 
-    static ArrayList<Member> population = new ArrayList<Member>();
+    ArrayList<Member> population = new ArrayList<Member>();
     //static double population[][] = new double [numberIndividuals][numberChromosomes];
-    static ArrayList<Double> populationFitness = new ArrayList<Double>();
+    ArrayList<Double> populationFitness = new ArrayList<Double>();
     int nWeightsBiases; // stores the total number of weights and biases
 
     GeneticAlgNetwork(int[] sizes, double scale) {
@@ -160,7 +160,7 @@ public class GeneticAlgNetwork extends Network {
 
 //Probabilistically selecting new members of the population through fitness scoring.
 //individual fitness/overall fitness
-    public static void selectPopulation(double averageInverseFitness) {
+    public void selectPopulation(double averageInverseFitness) {
 
 
 
@@ -316,7 +316,7 @@ public class GeneticAlgNetwork extends Network {
     }
 //Returns the fittest individual of the population.
 
-    public static int getFittest() {
+    public int getFittest() {
         int fittestPosition = 0;
         double lowestFitness = Double.MAX_VALUE;
         for (int i = 0; i < population.size(); i++) {
