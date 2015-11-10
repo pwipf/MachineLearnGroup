@@ -110,6 +110,8 @@ public class GeneticAlgNetwork extends Network {
         }
 
 
+    population.clear();
+    populationFitness.clear();
 
     }
 
