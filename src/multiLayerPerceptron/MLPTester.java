@@ -18,6 +18,12 @@ public class MLPTester{
 	// main()
 	public static void main(String[] args) {
 
+		long startTime=System.currentTimeMillis();
+
+
+		ParameterLoader pl=new ParameterLoader("params.txt");
+		//pl.initfile(filelist);
+		double[][][] parameters=pl.loadParameters();
 
 		for(int file=0;file<10;file++){
 
@@ -34,16 +40,16 @@ public class MLPTester{
 			////////////////////////////////////////////////////
 			// main setting of parameters
 			//
-			int[]	sizes=new int[]{nin,2,5,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
+			int[]	sizes=new int[]{nin,20,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
 
 			//todo read parameters from file
-			double[][][] parameters=new double[10][4][]; //file dataset, then algorithm, then parameter #
-			for(int i=0;i<10;i++){
-				parameters[i][Algs.Backprop.ordinal()]  =new double[]{100,.005,.3}; //epochs, eta, mu
-				parameters[i][Algs.MuLambda.ordinal()]  =new double[]{}; //
-				parameters[i][Algs.DiffEv.ordinal()]    =new double[]{500,8,.8,.6}; //maxGenerations, popSize, beta, pi
-				parameters[i][Algs.GeneticAlg.ordinal()]=new double[]{}; //
-			}
+//			double[][][] parameters=new double[10][4][]; //file dataset, then algorithm, then parameter #
+//			for(int i=0;i<10;i++){
+//				parameters[i][Algs.Backprop.ordinal()]  =new double[]{100,.005,.3}; //epochs, eta, mu
+//				parameters[i][Algs.MuLambda.ordinal()]  =new double[]{}; //
+//				parameters[i][Algs.DiffEv.ordinal()]    =new double[]{500,8,.8,.6}; //maxGenerations, popSize, beta, pi
+//				parameters[i][Algs.GeneticAlg.ordinal()]=new double[]{}; //
+//			}
 
 
 			int	examples=dataFile.data.length; // actual number of data records in the file
@@ -64,7 +70,6 @@ public class MLPTester{
 			System.out.print("Number of attributes: "+nin);
 			if(nin==4)System.out.print(" (Oops, it looked like 5 on UCI but they count the class)");
 			System.out.println("\nNumber of classifications: "+nout);
-
 
 			for(Algs alg: Algs.values()){ // loop through all the algorithms
 
@@ -168,7 +173,7 @@ public class MLPTester{
 							wrong[fold]++;
 					}
 
-					//System.out.println("fold: "+fold+" right: "+right[fold]+" wrong: "+wrong[fold]);
+					System.out.println("fold: "+(fold+1)+" right: "+right[fold]+" wrong: "+wrong[fold]);
 
 					scale=net.scale;
 				}
@@ -189,6 +194,8 @@ public class MLPTester{
 				save(gfilename);
 			}//alg
 		}//file
+
+		System.out.println("\nFinished in "+(double)(System.currentTimeMillis()-startTime)/1000+" sec");
 	}//main
 
 
