@@ -16,9 +16,9 @@ initialPopulationSize
 generations
 50
 mu (parental generation size)
-80
-lambda (child population size)
 20
+lambda (child population size)
+2
 max Number of Mutations
 5
 

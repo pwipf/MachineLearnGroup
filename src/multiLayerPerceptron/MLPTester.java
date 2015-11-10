@@ -12,7 +12,7 @@ public class MLPTester{
 	static String[] filelist={"banknote","mammograph","breastcancer","wine_cultivar","wine_quality",
 		"pima-indians-diabetes","cmc","fertility","heart","glass"};
 
-	static enum Algs{Backprop, MuLambda, DiffEv, GeneticAlg};
+	static enum Algs{Backprop, EvolutionaryStrategy, DiffEv, GeneticAlg};
 
 
 	// main()
@@ -74,16 +74,16 @@ public class MLPTester{
 			for(Algs alg: Algs.values()){ // loop through all the algorithms
 
 				// to skip an algorithm for testing
-				if(alg==Algs.MuLambda)
-					continue;// not yet implemented
+				if(alg==Algs.EvolutionaryStrategy);
+					//continue;// not yet implemented
 				if(alg==Algs.GeneticAlg)
 					continue;
-				//if(alg==Algs.Backprop)
-				//	continue;
+				if(alg==Algs.Backprop)
+					continue;
                                 if(alg==Algs.DiffEv)
                                         continue;
 
-				String algname=(alg==Algs.Backprop? "Backpropogation": (alg==Algs.MuLambda? "MuLambda":
+				String algname=(alg==Algs.Backprop? "Backpropogation": (alg==Algs.EvolutionaryStrategy? "MuLambda":
 								(alg==Algs.DiffEv? "Differential Evolution": "GeneticAlg")));
 				System.out.println("\nAlg: "+algname);
 
@@ -140,8 +140,8 @@ public class MLPTester{
 						case Backprop:
 							net=new BackpropNetwork(sizes,scale);
 							break;
-						case MuLambda:
-							//net=new MuLambdaNetwork(sizes,scale);
+						case EvolutionaryStrategy:
+							net=new EvolutionaryStrategy(sizes);
 							break;
 						case DiffEv:
 							net=new DiffEvNetwork(sizes,scale);
