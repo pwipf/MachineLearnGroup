@@ -16,9 +16,9 @@ import static multiLayerPerceptron.StdDraw.*;
  */
 public class GeneticAlgNetwork extends Network {
 
-    ArrayList<Member> population = new ArrayList<Member>();
+    ArrayList<Member> population = new ArrayList<>();
     //static double population[][] = new double [numberIndividuals][numberChromosomes];
-    ArrayList<Double> populationFitness = new ArrayList<Double>();
+    ArrayList<Double> populationFitness = new ArrayList<>();
     int nWeightsBiases; // stores the total number of weights and biases
 
     GeneticAlgNetwork(int[] sizes, double scale) {
