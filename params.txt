@@ -11,16 +11,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -42,9 +42,9 @@ Pop
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: mammograph
@@ -59,40 +59,40 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
 MaxGen
 500
 Pop
-15
+10
 beta
-0.5
+0.8
 pi
-0.5
+0.6
 
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: breastcancer
@@ -107,16 +107,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -132,15 +132,15 @@ pi
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: wine_cultivar
@@ -155,16 +155,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -180,15 +180,15 @@ pi
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: wine_quality
@@ -203,16 +203,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -228,15 +228,15 @@ pi
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: pima-indians-diabetes
@@ -251,16 +251,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -276,15 +276,15 @@ pi
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: cmc
@@ -299,16 +299,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -324,15 +324,15 @@ pi
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: fertility
@@ -347,16 +347,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -372,15 +372,15 @@ pi
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: heart
@@ -395,16 +395,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -420,15 +420,15 @@ pi
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 
 
 %%% DataFile: glass
@@ -443,16 +443,16 @@ mu
 
 
 MuLambda
-p1
-0.0
-p2
-0.0
-p3
-0.0
-p4
-0.0
-p5
-0.0
+initialPopulationSize
+100
+generations
+50
+mu (parental generation size)
+80
+lambda (child population size)
+20
+max Number of Mutations
+5
 
 
 DiffEvolution
@@ -468,13 +468,13 @@ pi
 
 GeneticAlg
 MaxGen
-1000
-Pop
 100
+Pop
+10
 crossoverRate
 0.25
 mutationPercentChange
-.2
-mutationChance
 0.2
+mutationChance
+0.015
 

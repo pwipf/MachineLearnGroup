@@ -76,10 +76,10 @@ public class MLPTester{
 				// to skip an algorithm for testing
 				if(alg==Algs.MuLambda)
 					continue;// not yet implemented
-//				if(alg==Algs.GeneticAlg)
-//					continue;// not yet implemented
-				if(alg==Algs.Backprop)
+				if(alg==Algs.GeneticAlg)
 					continue;
+				//if(alg==Algs.Backprop)
+				//	continue;
                                 if(alg==Algs.DiffEv)
                                         continue;
 
