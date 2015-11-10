@@ -73,7 +73,7 @@ public class DiffEvNetwork extends Network{
 					fm=fo; //fm always has the lesser value, for the graph below
 				}
 
-				point(map(generation,0,maxGen,.05,1),map(fm,0,1,.05,1));
+				point(map(generation,0,maxGen,.05,1),map(fm,0,.5,.05,1));
 				//System.out.println(fm);
 			}
 		}

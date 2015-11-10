@@ -51,7 +51,7 @@ public class GeneticAlgNetwork extends Network {
 
 
 
-        //Need to first create our random population.   
+        //Need to first create our random population.
         createPopulation(npop);
         int generation = 0;
 
@@ -59,7 +59,7 @@ public class GeneticAlgNetwork extends Network {
 
         for (int i = 0; i < maxGen; i++) {
             generation++;
-            //Calculate the average fitness between all individuals, the calculate method also stores their individual fitness scores    
+            //Calculate the average fitness between all individuals, the calculate method also stores their individual fitness scores
 
             //Selects individuals based on their fitness ratio (individual/overall population)
             //selection picks bigger ratio, so the selection uses the total of all fitnesses inversed
@@ -81,20 +81,20 @@ public class GeneticAlgNetwork extends Network {
             //for (int p = 0; p<population.size(); p++)
             //{
             // point(map(generation, 0, maxGen, .05, 1), map(populationFitness.get(p), 0, 1, .05, 1));
-            //    
-            //}    
+            //
+            //}
 
 
 
 
             //Plot only fittest
-            point(map(generation, 0, maxGen, .05, 1), map(populationFitness.get(getFittest()), 0, 1, .05, 1));
+            point(map(generation, 0, maxGen, .05, 1), map(populationFitness.get(getFittest()), 0, .5, .05, 1));
         }
         //Recalculate Fitness based on the Last Generation (So the individual's fitness correctly matches up with the current population)
 
 
         //Returns the chromosome of the fittest individual
-        //double[] fittest = getFittest();    
+        //double[] fittest = getFittest();
 
         // had better set the network weights
         int best = 0;
@@ -162,7 +162,7 @@ public class GeneticAlgNetwork extends Network {
 
 
 
-//    
+//
         Random random = new Random();
         ArrayList<Member> newPopulation = new ArrayList<Member>();
         for (int i = 0; i < population.size(); i++) {
@@ -174,7 +174,7 @@ public class GeneticAlgNetwork extends Network {
 //            double totalFitness = 0;
 //            for (int z = 0; z<population.size(); z++)
 //            {
-//            totalFitness += populationFitness.get(z);     
+//            totalFitness += populationFitness.get(z);
 //            }
 //            totalFitness /= population.size();
 //            System.out.println("Average Total Fitness is " + totalFitness);
@@ -185,7 +185,7 @@ public class GeneticAlgNetwork extends Network {
 
             //Ratios at 100% or higher are guaranteed to be added to the next generation
             while (fitnessRatio >= 1) {
-                //System.out.println(population.get(i)[0] + "added to newPopulation");      
+                //System.out.println(population.get(i)[0] + "added to newPopulation");
                 newPopulation.add(population.get(i));
                 fitnessRatio -= 1;
                 //System.out.println(newPopulation.get(i)[0]);
@@ -214,7 +214,7 @@ public class GeneticAlgNetwork extends Network {
 //For every individual in the population, splits and swaps parts of the chromosome between two individuals. The chance of this occuring is the crossoverRate
     public void populationCrossover(double crossoverRate, double[][] input, double[][] output) {
         for (int p = 0; p < population.size(); p++) {
-//Crossover is successful    
+//Crossover is successful
             if (Math.random() <= crossoverRate) {
 
                 int secondParent = (int) (Math.random() * population.size());
@@ -266,7 +266,7 @@ public class GeneticAlgNetwork extends Network {
                 }
 
 
-                //If the child is more fit, we replace the parent 
+                //If the child is more fit, we replace the parent
                 if (fitness(child1, input, output) < fitness(population.get(p), input, output)) {
                     population.set(p, child1);
                 }
