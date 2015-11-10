@@ -12,7 +12,7 @@ import static multiLayerPerceptron.MatMath.*;
 // The rest of the layers are the hidden layers with the last one being the output.
 // The weights, etc. are indexed i'th node, j'th input.
 //
-abstract class Network{
+class Network{
 	int[] sizes;	// sizes[0]=number of input nodes, sizes[len-1]=number of ouput nodes
 	int layers;		// sizes.length
 	int nInputs, nOutputs;
@@ -20,12 +20,13 @@ abstract class Network{
 	double scale;
 
 	double[][][] w;
-	double[][][] v;
 	double[][]   b;
 
   static Random gen=new Random();
 
-	public abstract void train(double[][] input, double[][] output, double[] parameters);
+	public void train(double[][] input, double[][] output, double[] parameters){
+
+	}
 
 	// constructor
 	// set size, activation functions. True is linear
@@ -36,16 +37,13 @@ abstract class Network{
 		nOutputs=sizes[sizes.length-1];
 
 		w=new double[layers][][];
-		v=new double[layers][][];
 		b=new double[layers][];
 		for(int l=1;l<layers;l++){
 			w[l]=new double[sizes[l]][sizes[l-1]];
-			v[l]=new double[sizes[l]][sizes[l-1]];
 			b[l]=new double[sizes[l]];
 			for(int i=0;i<sizes[l];i++){
 				for(int j=0;j<sizes[l-1];j++){
 					w[l][i][j]=gen.nextGaussian();
-					v[l][i][j]=0;
 				}
 				b[l][i]=gen.nextGaussian();
 			}
@@ -55,7 +53,6 @@ abstract class Network{
 	// feedForward()
 	// takes a vector of inputs, runs it through the network,
 	// returns a vector of outputs.
-	// (Had better be the same as the feedForward step in the backprop function below!)
 	double[] feedForward(double[] input){
 		double[] a = input;
 		for(int l=1;l<layers;l++){
@@ -112,6 +109,4 @@ abstract class Network{
 			b[j]=temp;
 		}
 	}
-
-	double getScale(){return scale;}
 }

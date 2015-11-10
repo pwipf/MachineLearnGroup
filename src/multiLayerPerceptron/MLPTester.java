@@ -21,6 +21,10 @@ public class MLPTester{
 
 		for(int file=0;file<10;file++){
 
+			// to skip all but one dataset, for testing
+			if(file != 1)
+				continue;
+
 			ArffReader dataFile = new ArffReader(filelist[file]+".arff");
 
 			int nin=dataFile.nAttributes; // number of attributes from file
@@ -30,7 +34,7 @@ public class MLPTester{
 			////////////////////////////////////////////////////
 			// main setting of parameters
 			//
-			int[]	sizes=new int[]{nin,20,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
+			int[]	sizes=new int[]{nin,2,5,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
 
 			//todo read parameters from file
 			double[][][] parameters=new double[10][4][]; //file dataset, then algorithm, then parameter #
@@ -64,10 +68,13 @@ public class MLPTester{
 
 			for(Algs alg: Algs.values()){ // loop through all the algorithms
 
+				// to skip an algorithm for testing
 				if(alg==Algs.MuLambda)
 					continue;// not yet implemented
 				if(alg==Algs.GeneticAlg)
 					continue;// not yet implemented
+				if(alg==Algs.Backprop)
+					continue;
 
 				String algname=(alg==Algs.Backprop? "Backpropogation": (alg==Algs.MuLambda? "MuLambda":
 								(alg==Algs.DiffEv? "Differential Evolution": "GeneticAlg")));
@@ -163,7 +170,7 @@ public class MLPTester{
 
 					//System.out.println("fold: "+fold+" right: "+right[fold]+" wrong: "+wrong[fold]);
 
-					scale=net.getScale();
+					scale=net.scale;
 				}
 
 				double mean=0;

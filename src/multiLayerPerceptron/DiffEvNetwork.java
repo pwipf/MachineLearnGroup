@@ -14,12 +14,19 @@ import static multiLayerPerceptron.StdDraw.*;
  */
 public class DiffEvNetwork extends Network{
 
+	int nWeightsBiases; // stores the total number of weights and biases
+
 	DiffEvNetwork(int[] sizes, double scale){
 		super(sizes);
+
+		nWeightsBiases=0;
+		for(int l=1;l<layers;l++)
+			nWeightsBiases+=sizes[l]*sizes[l-1]+sizes[l];
 	}
 
 	@Override
 	public void train(double[][] input, double[][] output, double[] parameters){
+
 		int maxGen=(int)parameters[0];
 		int npop  =(int)parameters[1];
 		double beta=parameters[2];
@@ -92,30 +99,43 @@ public class DiffEvNetwork extends Network{
 		}
 	}
 
-	class Member{
-		double[][][] w;
-		double[][]   b;
 
+	// helper functions in case is helpful to have the weights and biases all in a nice vector
+	//
+	// serializeGenes()
+	// Creates a vector (1D array) of weights and biases from all the weights/biases in the network.
+	double[] serializeGenes(Member m){
+		double[] temp=new double[nWeightsBiases];
+		int k=0;
 
-		Member(){
-			w=new double[sizes.length][][];
-			b=new double[sizes.length][];
-			for(int l=1;l<sizes.length;l++){
-				w[l]=new double[sizes[l]][sizes[l-1]];
-				b[l]=new double[sizes[l]];
-			}
-		}
-
-		void initRandom(){
-			for(int l=1;l<sizes.length;l++){
-				for(int i=0;i<sizes[l];i++){
-					for(int j=0;j<sizes[l-1];j++){
-						w[l][i][j]=gen.nextGaussian();
-					}
-					b[l][i]=gen.nextGaussian();
+		for(int l=1;l<sizes.length;l++){
+			for(int i=0;i<sizes[l];i++){
+				for(int j=0;j<sizes[l-1];j++){
+					temp[k++]=m.w[l][i][j];
 				}
+				temp[k++]=m.b[l][i];
 			}
 		}
+		return temp;
+	}
+
+	// of course a vector form of the weights and biases is not good for running feedforward to
+	// get output from the network.
+	//
+	// unSerializeGenes()
+	// Creates a NEW Member from the serialized weight/biases.
+	Member unSerializeGenes(double[] ser){
+		Member m=new Member();
+		int k=0;
+		for(int l=1;l<sizes.length;l++){
+			for(int i=0;i<sizes[l];i++){
+				for(int j=0;j<sizes[l-1];j++){
+					m.w[l][i][j]=ser[k++];
+				}
+				m.b[l][i]=ser[k++];
+			}
+		}
+		return m;
 	}
 
 	double fitness(Member m, double[][] input, double[][] output){
@@ -163,7 +183,33 @@ public class DiffEvNetwork extends Network{
 		return temp;
 	}
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
+	// inner class Member
+	// a simplified and faster version of the network class, since it only stores the weights
+	// and biases, and does not initialize them unless initRandom is explicitly called.
+	class Member{
+		double[][][] w;
+		double[][]   b;
 
+
+		Member(){
+			w=new double[sizes.length][][];
+			b=new double[sizes.length][];
+			for(int l=1;l<sizes.length;l++){
+				w[l]=new double[sizes[l]][sizes[l-1]];
+				b[l]=new double[sizes[l]];
+			}
+		}
+
+		void initRandom(){
+			for(int l=1;l<sizes.length;l++){
+				for(int i=0;i<sizes[l];i++){
+					for(int j=0;j<sizes[l-1];j++){
+						w[l][i][j]=gen.nextGaussian()*10;
+					}
+					b[l][i]=gen.nextGaussian()*10;
+				}
+			}
+		}
+	}
 
 }

@@ -6,9 +6,20 @@ import static multiLayerPerceptron.StdDraw.*;
 
 public class BackpropNetwork extends Network{
 
+	double[][][] v; //velocity for using momentum
 
 	BackpropNetwork(int[] sizes, double scale){
 		super(sizes);
+
+		v=new double[layers][][]; // just need to add the velocity initalization
+		for(int l=1;l<layers;l++){
+			v[l]=new double[sizes[l]][sizes[l-1]];
+			for(int i=0;i<sizes[l];i++){
+				for(int j=0;j<sizes[l-1];j++){
+					v[l][i][j]=0;
+				}
+			}
+		}
 	}
 
 	@Override
@@ -76,7 +87,7 @@ public class BackpropNetwork extends Network{
 		for(int l=1;l<layers;l++){
 			v[l] = matSub(matMult(mu, v[l]), matMult(eta,matMult(delta[l],a[l-1])));
 			w[l] = matAdd(w[l], v[l]);
-			//w[l] = matSub(w[l], matMult(eta,matMult(delta[l],a[l-1])));
+			//w[l] = matSub(w[l], matMult(eta,matMult(delta[l],a[l-1]))); //to not use momentum
 			b[l] = vecSub(b[l], vecMult(eta, delta[l]));
 		}
 	}
