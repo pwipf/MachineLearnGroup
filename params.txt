@@ -36,9 +36,9 @@ pi
 
 GeneticAlg
 MaxGen
-500
+100
 Pop
-30
+10
 crossoverRate
 0.25
 mutationPercentChange
