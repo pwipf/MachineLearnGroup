@@ -331,12 +331,14 @@ class Network {
     public void trainGeneticAlg(double[][] input, double[][] output, int maxGen, int npop, double beta, double rho, double mutationRate) {
 
         //Need to first create our random population.   
-        createPopulation(maxGen);
+        createPopulation(npop);
         int generation = 0;
+        
+        double averageInverseFitness = calculateTotalFitness(input, output) / population.size();
+        
         for (int i = 0; i < maxGen; i++) {
             generation++;
             //Calculate the average fitness between all individuals, the calculate method also stores their individual fitness scores    
-            double averageInverseFitness = calculateTotalFitness(input, output) / population.size();
 
             //Selects individuals based on their fitness ratio (individual/overall population)
             //selection picks bigger ratio, so the selection uses the total of all fitnesses inversed
@@ -352,7 +354,7 @@ class Network {
 
 
 
-            calculateTotalFitness(input, output);
+            averageInverseFitness = calculateTotalFitness(input, output) / population.size();
             
             //Plot entire population
             //for (int p = 0; p<population.size(); p++)
@@ -555,11 +557,18 @@ class Network {
 
             //Smaller fitness is better, so we invert the ratio to make comparisons
 
-            //
-
-            //System.out.println("Individual Fitness " + populationFitness.get(i));
-            //System.out.println("Average fitness is " + averageFitness);
-
+//            double totalFitness = 0;
+//            for (int z = 0; z<population.size(); z++)
+//            {
+//            totalFitness += populationFitness.get(z);     
+//            }
+//            totalFitness /= population.size();
+//            System.out.println("Average Total Fitness is " + totalFitness);
+//            System.out.println("Individual Fitness " + populationFitness.get(i));
+//            System.out.println("Average inverse fitness is " + averageInverseFitness);
+//            System.out.println("Fitness Ratio is " + fitnessRatio );
+//            System.out.println();
+            
             //Ratios at 100% or higher are guaranteed to be added to the next generation
             while (fitnessRatio >= 1) {
                 //System.out.println(population.get(i)[0] + "added to newPopulation");      
@@ -597,9 +606,13 @@ class Network {
                 int secondParent = (int) (Math.random() * population.size());
 
                 int chromosomeSplit = (int) (Math.random() * sizes.length);
-
+//System.out.println("Split at" + chromosomeSplit);
+//System.out.println("sizes.length is " + sizes.);
+//System.out.println("Sizes length is" + sizes.length);
+                
                 Member child1 = new Member();
                 Member child2 = new Member();
+                
 
 
                 for (int l = 1; l < sizes.length; l++) {
@@ -625,7 +638,7 @@ class Network {
 
 
                         if (l <= chromosomeSplit) {
-                            child1.b[l][i] = population.get(i).b[l][i];
+                            child1.b[l][i] = population.get(p).b[l][i];
                         } else {
                             child1.b[l][i] = population.get(secondParent).b[l][i];
                         }
@@ -633,7 +646,7 @@ class Network {
                         if (l <= chromosomeSplit) {
                             child2.b[l][i] = population.get(secondParent).b[l][i];
                         } else {
-                            child2.b[l][i] = population.get(secondParent).b[l][i];
+                            child2.b[l][i] = population.get(p).b[l][i];
                         }
                     }
                 }
