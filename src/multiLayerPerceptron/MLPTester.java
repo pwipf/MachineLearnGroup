@@ -76,10 +76,12 @@ public class MLPTester{
 				// to skip an algorithm for testing
 				if(alg==Algs.MuLambda)
 					continue;// not yet implemented
-				if(alg==Algs.GeneticAlg)
-					continue;// not yet implemented
+//				if(alg==Algs.GeneticAlg)
+//					continue;// not yet implemented
 				if(alg==Algs.Backprop)
 					continue;
+                                if(alg==Algs.DiffEv)
+                                        continue;
 
 				String algname=(alg==Algs.Backprop? "Backpropogation": (alg==Algs.MuLambda? "MuLambda":
 								(alg==Algs.DiffEv? "Differential Evolution": "GeneticAlg")));
@@ -145,7 +147,7 @@ public class MLPTester{
 							net=new DiffEvNetwork(sizes,scale);
 							break;
 						case GeneticAlg:
-							//net=new GeneticAlgNetwork(sizes,scale);
+							net=new GeneticAlgNetwork(sizes,scale);
 							break;
 					}
 
