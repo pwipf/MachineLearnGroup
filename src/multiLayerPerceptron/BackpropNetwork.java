@@ -1,6 +1,6 @@
 
 package multiLayerPerceptron;
-
+duh
 import static multiLayerPerceptron.MatMath.*;
 import static multiLayerPerceptron.StdDraw.*;
 
