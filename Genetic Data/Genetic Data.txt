@@ -1,0 +1,415 @@
+
+compile:
+run:
+Relation: data_banknote_authentication
+File: banknote
+Number examples: 1372
+Number of attributes: 4 (Oops, it looked like 5 on UCI but they count the class)
+Number of classifications: 2
+
+Alg: GeneticAlg
+training on examples 0-1234
+testing on examples 1235-1371
+fold: 1 right: 137 wrong: 0
+training on examples 1235-1097
+testing on examples 1098-1234
+fold: 2 right: 137 wrong: 0
+training on examples 1098-960
+testing on examples 961-1097
+fold: 3 right: 137 wrong: 0
+training on examples 961-823
+testing on examples 824-960
+fold: 4 right: 136 wrong: 1
+training on examples 824-686
+testing on examples 687-823
+fold: 5 right: 135 wrong: 2
+training on examples 687-549
+testing on examples 550-686
+fold: 6 right: 137 wrong: 0
+training on examples 550-412
+testing on examples 413-549
+fold: 7 right: 137 wrong: 0
+training on examples 413-275
+testing on examples 276-412
+fold: 8 right: 137 wrong: 0
+training on examples 276-138
+testing on examples 139-275
+fold: 9 right: 137 wrong: 0
+training on examples 139-1
+testing on examples 2-138
+fold: 10 right: 137 wrong: 0
+Accuracy:
+	mean: 99.78102189781023%
+	standard dev: 0.4673813311994761%
+
+Relation: mammographic_masses
+File: mammograph
+Number examples: 830
+Number of attributes: 5
+Number of classifications: 2
+
+Alg: GeneticAlg
+training on examples 0-746
+testing on examples 747-829
+fold: 1 right: 68 wrong: 15
+training on examples 747-663
+testing on examples 664-746
+fold: 2 right: 67 wrong: 16
+training on examples 664-580
+testing on examples 581-663
+fold: 3 right: 67 wrong: 16
+training on examples 581-497
+testing on examples 498-580
+fold: 4 right: 67 wrong: 16
+training on examples 498-414
+testing on examples 415-497
+fold: 5 right: 58 wrong: 25
+training on examples 415-331
+testing on examples 332-414
+fold: 6 right: 69 wrong: 14
+training on examples 332-248
+testing on examples 249-331
+fold: 7 right: 66 wrong: 17
+training on examples 249-165
+testing on examples 166-248
+fold: 8 right: 69 wrong: 14
+training on examples 166-82
+testing on examples 83-165
+fold: 9 right: 59 wrong: 24
+training on examples 83-829
+testing on examples 0-82
+fold: 10 right: 63 wrong: 20
+Accuracy:
+	mean: 78.67469879518072%
+	standard dev: 4.541705259029101%
+
+Relation: breast-cancer-wisconsin-weka.filters.unsupervised.attribute.Remove-R1
+File: breastcancer
+Number examples: 683
+Number of attributes: 9
+Number of classifications: 2
+
+Alg: GeneticAlg
+training on examples 0-614
+testing on examples 615-682
+fold: 1 right: 58 wrong: 10
+training on examples 615-546
+testing on examples 547-614
+fold: 2 right: 66 wrong: 2
+training on examples 547-478
+testing on examples 479-546
+fold: 3 right: 66 wrong: 2
+training on examples 479-410
+testing on examples 411-478
+fold: 4 right: 55 wrong: 13
+training on examples 411-342
+testing on examples 343-410
+fold: 5 right: 56 wrong: 12
+training on examples 343-274
+testing on examples 275-342
+fold: 6 right: 53 wrong: 15
+training on examples 275-206
+testing on examples 207-274
+fold: 7 right: 54 wrong: 14
+training on examples 207-138
+testing on examples 139-206
+fold: 8 right: 64 wrong: 4
+training on examples 139-70
+testing on examples 71-138
+fold: 9 right: 57 wrong: 11
+training on examples 71-2
+testing on examples 3-70
+fold: 10 right: 48 wrong: 20
+Accuracy:
+	mean: 84.85294117647058%
+	standard dev: 8.294169795413866%
+
+Relation: 'wine-weka.filters.unsupervised.attribute.Reorder-R2,3,4,5,6,7,8,9,10,11,12,13,14,1'
+File: wine_cultivar
+Number examples: 178
+Number of attributes: 13
+Number of classifications: 3
+
+Alg: GeneticAlg
+training on examples 0-160
+testing on examples 161-177
+fold: 1 right: 0 wrong: 17
+training on examples 161-143
+testing on examples 144-160
+fold: 2 right: 0 wrong: 17
+training on examples 144-126
+testing on examples 127-143
+fold: 3 right: 3 wrong: 14
+training on examples 127-109
+testing on examples 110-126
+fold: 4 right: 17 wrong: 0
+training on examples 110-92
+testing on examples 93-109
+fold: 5 right: 8 wrong: 9
+training on examples 93-75
+testing on examples 76-92
+fold: 6 right: 13 wrong: 4
+training on examples 76-58
+testing on examples 59-75
+fold: 7 right: 15 wrong: 2
+training on examples 59-41
+testing on examples 42-58
+fold: 8 right: 16 wrong: 1
+training on examples 42-24
+testing on examples 25-41
+fold: 9 right: 16 wrong: 1
+training on examples 25-7
+testing on examples 8-24
+fold: 10 right: 13 wrong: 4
+Accuracy:
+	mean: 59.411764705882355%
+	standard dev: 37.98105519378336%
+
+Relation: winequality-red
+File: wine_quality
+Number examples: 1599
+Number of attributes: 11
+Number of classifications: 6
+
+Alg: GeneticAlg
+training on examples 0-1439
+testing on examples 1440-1598
+fold: 1 right: 36 wrong: 123
+training on examples 1440-1280
+testing on examples 1281-1439
+fold: 2 right: 5 wrong: 154
+training on examples 1281-1121
+testing on examples 1122-1280
+fold: 3 right: 72 wrong: 87
+training on examples 1122-962
+testing on examples 963-1121
+fold: 4 right: 72 wrong: 87
+training on examples 963-803
+testing on examples 804-962
+fold: 5 right: 34 wrong: 125
+training on examples 804-644
+testing on examples 645-803
+fold: 6 right: 45 wrong: 114
+training on examples 645-485
+testing on examples 486-644
+fold: 7 right: 60 wrong: 99
+training on examples 486-326
+testing on examples 327-485
+fold: 8 right: 10 wrong: 149
+training on examples 327-167
+testing on examples 168-326
+fold: 9 right: 57 wrong: 102
+training on examples 168-8
+testing on examples 9-167
+fold: 10 right: 95 wrong: 64
+Accuracy:
+	mean: 30.566037735849058%
+	standard dev: 16.90455596871759%
+
+Relation: pima-indians-diabetes
+File: pima-indians-diabetes
+Number examples: 768
+Number of attributes: 8
+Number of classifications: 2
+
+Alg: GeneticAlg
+training on examples 0-691
+testing on examples 692-767
+fold: 1 right: 46 wrong: 30
+training on examples 692-615
+testing on examples 616-691
+fold: 2 right: 52 wrong: 24
+training on examples 616-539
+testing on examples 540-615
+fold: 3 right: 52 wrong: 24
+training on examples 540-463
+testing on examples 464-539
+fold: 4 right: 61 wrong: 15
+training on examples 464-387
+testing on examples 388-463
+fold: 5 right: 48 wrong: 28
+training on examples 388-311
+testing on examples 312-387
+fold: 6 right: 49 wrong: 27
+training on examples 312-235
+testing on examples 236-311
+fold: 7 right: 46 wrong: 30
+training on examples 236-159
+testing on examples 160-235
+fold: 8 right: 44 wrong: 32
+training on examples 160-83
+testing on examples 84-159
+fold: 9 right: 52 wrong: 24
+training on examples 84-7
+testing on examples 8-83
+fold: 10 right: 47 wrong: 29
+Accuracy:
+	mean: 65.39473684210527%
+	standard dev: 6.088281737504882%
+
+Relation: cmc
+File: cmc
+Number examples: 1473
+Number of attributes: 9
+Number of classifications: 3
+
+Alg: GeneticAlg
+training on examples 0-1325
+testing on examples 1326-1472
+fold: 1 right: 0 wrong: 147
+training on examples 1326-1178
+testing on examples 1179-1325
+fold: 2 right: 35 wrong: 112
+training on examples 1179-1031
+testing on examples 1032-1178
+fold: 3 right: 147 wrong: 0
+training on examples 1032-884
+testing on examples 885-1031
+fold: 4 right: 63 wrong: 84
+training on examples 885-737
+testing on examples 738-884
+fold: 5 right: 0 wrong: 147
+training on examples 738-590
+testing on examples 591-737
+fold: 6 right: 96 wrong: 51
+training on examples 591-443
+testing on examples 444-590
+fold: 7 right: 0 wrong: 147
+training on examples 444-296
+testing on examples 297-443
+fold: 8 right: 80 wrong: 67
+training on examples 297-149
+testing on examples 150-296
+fold: 9 right: 0 wrong: 147
+training on examples 150-2
+testing on examples 3-149
+fold: 10 right: 0 wrong: 147
+Accuracy:
+	mean: 28.63945578231293%
+	standard dev: 33.80541728985926%
+
+Relation: fertility
+File: fertility
+Number examples: 100
+Number of attributes: 9
+Number of classifications: 2
+
+Alg: GeneticAlg
+training on examples 0-89
+testing on examples 90-99
+fold: 1 right: 9 wrong: 1
+training on examples 90-79
+testing on examples 80-89
+fold: 2 right: 9 wrong: 1
+training on examples 80-69
+testing on examples 70-79
+fold: 3 right: 9 wrong: 1
+training on examples 70-59
+testing on examples 60-69
+fold: 4 right: 10 wrong: 0
+training on examples 60-49
+testing on examples 50-59
+fold: 5 right: 10 wrong: 0
+training on examples 50-39
+testing on examples 40-49
+fold: 6 right: 10 wrong: 0
+training on examples 40-29
+testing on examples 30-39
+fold: 7 right: 9 wrong: 1
+training on examples 30-19
+testing on examples 20-29
+fold: 8 right: 6 wrong: 4
+training on examples 20-9
+testing on examples 10-19
+fold: 9 right: 8 wrong: 2
+training on examples 10-99
+testing on examples 0-9
+fold: 10 right: 8 wrong: 2
+Accuracy:
+	mean: 88.0%
+	standard dev: 11.661903789690601%
+
+Relation: heart
+File: heart
+Number examples: 270
+Number of attributes: 13
+Number of classifications: 2
+
+Alg: GeneticAlg
+training on examples 0-242
+testing on examples 243-269
+fold: 1 right: 19 wrong: 8
+training on examples 243-215
+testing on examples 216-242
+fold: 2 right: 24 wrong: 3
+training on examples 216-188
+testing on examples 189-215
+fold: 3 right: 23 wrong: 4
+training on examples 189-161
+testing on examples 162-188
+fold: 4 right: 19 wrong: 8
+training on examples 162-134
+testing on examples 135-161
+fold: 5 right: 22 wrong: 5
+training on examples 135-107
+testing on examples 108-134
+fold: 6 right: 20 wrong: 7
+training on examples 108-80
+testing on examples 81-107
+fold: 7 right: 19 wrong: 8
+training on examples 81-53
+testing on examples 54-80
+fold: 8 right: 21 wrong: 6
+training on examples 54-26
+testing on examples 27-53
+fold: 9 right: 22 wrong: 5
+training on examples 27-269
+testing on examples 0-26
+fold: 10 right: 18 wrong: 9
+Accuracy:
+	mean: 76.66666666666666%
+	standard dev: 7.037037037037039%
+
+Relation: glass
+File: glass
+Number examples: 214
+Number of attributes: 9
+Number of classifications: 6
+
+Alg: GeneticAlg
+training on examples 0-192
+testing on examples 193-213
+fold: 1 right: 0 wrong: 21
+training on examples 193-171
+testing on examples 172-192
+fold: 2 right: 1 wrong: 20
+training on examples 172-150
+testing on examples 151-171
+fold: 3 right: 0 wrong: 21
+training on examples 151-129
+testing on examples 130-150
+fold: 4 right: 0 wrong: 21
+training on examples 130-108
+testing on examples 109-129
+fold: 5 right: 5 wrong: 16
+training on examples 109-87
+testing on examples 88-108
+fold: 6 right: 0 wrong: 21
+training on examples 88-66
+testing on examples 67-87
+fold: 7 right: 18 wrong: 3
+training on examples 67-45
+testing on examples 46-66
+fold: 8 right: 0 wrong: 21
+training on examples 46-24
+testing on examples 25-45
+fold: 9 right: 0 wrong: 21
+training on examples 25-3
+testing on examples 4-24
+fold: 10 right: 0 wrong: 21
+Accuracy:
+	mean: 11.428571428571427%
+	standard dev: 25.74953492303957%
+
+
+Finished in 4009.519 sec
