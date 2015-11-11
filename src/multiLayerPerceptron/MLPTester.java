@@ -11,6 +11,7 @@ public class MLPTester{
 	static Color[] colorlist={BLACK,BOOK_BLUE,RED,BLUE,CYAN,GRAY,GREEN,MAGENTA,ORANGE,PINK};
 	static String[] filelist={"banknote","mammograph","breastcancer","wine_cultivar","wine_quality",
 		"pima-indians-diabetes","cmc","fertility","heart","glass"};
+	static String[] algNames={"Backprop","EvStrat","DiffEv","GenAlg"};
 
 	static enum Algs{Backprop, EvolutionaryStrategy, DiffEv, GeneticAlg};
 
@@ -71,15 +72,13 @@ public class MLPTester{
 				if(alg==Algs.EvolutionaryStrategy)
 					continue;
         //if(alg==Algs.DiffEv)
-        //  continue;
+          //continue;
 				if(alg==Algs.GeneticAlg)
 					continue;
 
-				String algname=(alg==Algs.Backprop? "Backpropogation": (alg==Algs.EvolutionaryStrategy? "MuLambda":
-								(alg==Algs.DiffEv? "Differential Evolution": "GeneticAlg")));
-				System.out.println("\nAlg: "+algname);
+				System.out.println("\nAlg: "+algNames[alg.ordinal()]);
 
-				setupGraphic(); // simple graph to show realtime squared error for each epoch
+				setupGraphic(alg.ordinal(),file,parameters[file][alg.ordinal()]); // simple graph to show realtime squared error for each epoch
 										// different color for each fold of the 10 folds
 
 				//////////////////////////////////////////////////////////////////////
@@ -87,6 +86,9 @@ public class MLPTester{
 
 				int[] right=new int[numFolds];
 				int[] wrong=new int[numFolds];
+
+				double scale=0;
+
 
 				for(int fold=0;fold<numFolds;fold++){
 					//System.out.println("\nFold "+(fold+1));
@@ -127,7 +129,7 @@ public class MLPTester{
 					Network net=null;
 					switch(alg){
 						case Backprop:
-							net=new BackpropNetwork(sizes);
+							net=new BackpropNetwork(sizes,scale);
 							break;
 						case EvolutionaryStrategy:
 							net=new EvolutionaryStrategy(sizes);
@@ -162,10 +164,12 @@ public class MLPTester{
 							right[fold]++;
 						else
 							wrong[fold]++;
+
+						scale=BackpropNetwork.scale;
 					}
 
-					System.out.println("fold: "+(fold+1)+", right: "+right[fold]+", wrong: "+wrong[fold]+
-									", "+(double)right[fold]/(right[fold]+wrong[fold])*100+"%");
+					//System.out.println("fold: "+(fold+1)+", right: "+right[fold]+", wrong: "+wrong[fold]+
+					//				", "+(double)right[fold]/(right[fold]+wrong[fold])*100+"%");
 
 				}
 
@@ -181,9 +185,10 @@ public class MLPTester{
 
 				System.out.println("Accuracy:\n\tmean: "+mean+"%\n\tstandard dev: "+sd+"%\n");
 
-				String gfilename=filelist[file]+"_"+algname+".jpg";
+				String gfilename=filelist[file]+"_"+algNames[alg.ordinal()]+".jpg";
 				save(gfilename);
 			}//alg
+
 		}//file
 
 		System.out.println("\nFinished in "+(double)(System.currentTimeMillis()-startTime)/1000+" sec");
@@ -191,13 +196,20 @@ public class MLPTester{
 
 
   // stuff for graphical output
-	static void setupGraphic(){
+	static void setupGraphic(int alg, int file, double[] params){
 		setCanvasSize(800,600);
 		setPenRadius(.001);
 		line(0,.05,1,.05);
 		line(.05,0,.05,1);
 		text(0,.5,"error");
-		text(.5,0,"Time");
+		if(alg==0)
+			text(.5,0,"Epoch");
+		else
+			text(.5,0,"Generation");
+		String ps="Parameters: "+params[0];
+		for(int i=1;i<params.length;i++)
+			ps=String.format("%s, %s", ps, params[i]);
+		text(.5,1.02,String.format("Data: %s.arff    Alg: %s    %s", filelist[file],algNames[alg],ps));
 		setPenColor(BOOK_RED);
 		setPenRadius(.005);
 	}

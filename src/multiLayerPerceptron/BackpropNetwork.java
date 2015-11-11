@@ -10,9 +10,9 @@ public class BackpropNetwork extends Network{
 
 	double[][][] v; //velocity for using momentum
 
-	BackpropNetwork(int[] sizes){
+	BackpropNetwork(int[] sizes,double scale){
 		super(sizes);
-
+		this.scale=scale;
 		v=new double[layers][][]; // just need to add the velocity initalization
 		for(int l=1;l<layers;l++){
 			v[l]=new double[sizes[l]][sizes[l-1]];

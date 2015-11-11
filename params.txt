@@ -55,7 +55,7 @@ Epochs
 eta
 0.0007
 mu
-0.4
+0.2
 
 
 MuLambda
