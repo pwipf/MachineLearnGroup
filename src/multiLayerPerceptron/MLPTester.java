@@ -13,7 +13,7 @@ public class MLPTester{
 		"pima-indians-diabetes","cmc","fertility","heart","glass"};
 
 	static enum Algs{Backprop, EvolutionaryStrategy, DiffEv, GeneticAlg};
-
+        private static int numFolds = 3;
 
 	// main()
 	public static void main(String[] args) {
@@ -40,16 +40,7 @@ public class MLPTester{
 			////////////////////////////////////////////////////
 			// main setting of parameters
 			//
-			int[]	sizes=new int[]{nin,20,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
-
-			//todo read parameters from file
-//			double[][][] parameters=new double[10][4][]; //file dataset, then algorithm, then parameter #
-//			for(int i=0;i<10;i++){
-//				parameters[i][Algs.Backprop.ordinal()]  =new double[]{100,.005,.3}; //epochs, eta, mu
-//				parameters[i][Algs.MuLambda.ordinal()]  =new double[]{}; //
-//				parameters[i][Algs.DiffEv.ordinal()]    =new double[]{500,8,.8,.6}; //maxGenerations, popSize, beta, pi
-//				parameters[i][Algs.GeneticAlg.ordinal()]=new double[]{}; //
-//			}
+			int[]	sizes=new int[]{nin,15,15,nout}; // the number of nodes in each layer. {nin,10,nout} is 1 hidden layer with 10 nodes
 
 
 			int	examples=dataFile.data.length; // actual number of data records in the file
@@ -91,20 +82,19 @@ public class MLPTester{
 										// different color for each fold of the 10 folds
 
 				//////////////////////////////////////////////////////////////////////
-				// 10 fold X-Validation
+				// numFolds fold X-Validation
 
-				int[] right=new int[10];
-				int[] wrong=new int[10];
+				int[] right=new int[numFolds];
+				int[] wrong=new int[numFolds];
 				int color=0;
 
 				double scale=0;
-
-				for(int fold=0;fold<10;fold++){
+				for(int fold=0;fold<numFolds;fold++){
 					//System.out.println("\nFold "+(fold+1));
 
-					setPenColor(colorlist[color++%10]);
+					setPenColor(colorlist[color++%numFolds]);
 
-					int ntests=examples/10;
+					int ntests=examples/numFolds;
 					int ntrains=examples-ntests;
 
 					int firstTrainIndex=(fold*ntrains)%examples;
@@ -133,7 +123,7 @@ public class MLPTester{
 					///////////////////////////////////////////////////////////////
 					// send the network the training data and train it.
 
-					//System.out.println("training on examples "+firstTrainIndex+"-"+lastTrainIndex);
+					System.out.println("training on examples "+firstTrainIndex+"-"+lastTrainIndex);
 
 					Network net=null;
 					switch(alg){
@@ -157,7 +147,7 @@ public class MLPTester{
 					// test using simply the net.feedForward function, then choose the output node
 					// with the highest number (they are all between 0 and 1 if sigmoid activation)
 
-					//System.out.println("testing on examples "+firstTestIndex+"-"+lastTestIndex);
+					System.out.println("testing on examples "+firstTestIndex+"-"+lastTestIndex);
 					right[fold]=0;
 					wrong[fold]=0;
 					for(int i=0;i<ntests;i++){
@@ -182,12 +172,12 @@ public class MLPTester{
 
 				double mean=0;
 				double sd=0;
-				for(int i=0;i<10;i++)
+				for(int i=0;i<numFolds;i++)
 					mean+=(double)right[i]/(right[i]+wrong[i])*100;
-				mean/=10;
-				for(int i=0;i<10;i++)
+				mean/=numFolds;
+				for(int i=0;i<numFolds;i++)
 					sd+=Math.pow(((double)right[i]/(right[i]+wrong[i])*100)-mean, 2);
-				sd/=10;
+				sd/=numFolds;
 				sd=Math.sqrt(sd);
 
 				System.out.println("Accuracy:\n\tmean: "+mean+"%\n\tstandard dev: "+sd+"%\n");
