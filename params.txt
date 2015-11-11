@@ -36,15 +36,15 @@ pi
 
 GeneticAlg
 MaxGen
-100
+150
 Pop
-10
+50
 crossoverRate
-0.25
+0.8
 mutationPercentChange
-0.2
+1
 mutationChance
-0.015
+0.03
 
 
 %%% DataFile: mammograph
@@ -84,15 +84,15 @@ pi
 
 GeneticAlg
 MaxGen
-100
+75
 Pop
-10
+100
 crossoverRate
-0.25
+0.9
 mutationPercentChange
-0.2
+1
 mutationChance
-0.015
+0.05
 
 
 %%% DataFile: breastcancer
@@ -132,15 +132,15 @@ pi
 
 GeneticAlg
 MaxGen
-100
+150
 Pop
-10
+100
 crossoverRate
 0.25
 mutationPercentChange
-0.2
+.1
 mutationChance
-0.015
+0.03
 
 
 %%% DataFile: wine_cultivar
@@ -180,15 +180,15 @@ pi
 
 GeneticAlg
 MaxGen
-100
+125
 Pop
-10
+125
 crossoverRate
-0.25
+0.15
 mutationPercentChange
-0.2
+1.0
 mutationChance
-0.015
+0.3
 
 
 %%% DataFile: wine_quality
@@ -232,7 +232,7 @@ MaxGen
 Pop
 10
 crossoverRate
-0.25
+0.5
 mutationPercentChange
 0.2
 mutationChance
@@ -278,13 +278,13 @@ GeneticAlg
 MaxGen
 100
 Pop
-10
+25
 crossoverRate
-0.25
+0.5
 mutationPercentChange
-0.2
+0.25
 mutationChance
-0.015
+0.2
 
 
 %%% DataFile: cmc
@@ -372,15 +372,15 @@ pi
 
 GeneticAlg
 MaxGen
-100
+300
 Pop
-10
+50
 crossoverRate
-0.25
+0.3
 mutationPercentChange
-0.2
+.2
 mutationChance
-0.015
+0.0015
 
 
 %%% DataFile: heart
@@ -420,15 +420,15 @@ pi
 
 GeneticAlg
 MaxGen
-100
+200
 Pop
-10
+100
 crossoverRate
-0.25
+0.8
 mutationPercentChange
-0.2
+0.8
 mutationChance
-0.015
+0.3
 
 
 %%% DataFile: glass
@@ -468,13 +468,13 @@ pi
 
 GeneticAlg
 MaxGen
-100
+500
 Pop
-10
+150
 crossoverRate
-0.25
+0.30
 mutationPercentChange
-0.2
+0.08
 mutationChance
-0.015
+0.01
 
