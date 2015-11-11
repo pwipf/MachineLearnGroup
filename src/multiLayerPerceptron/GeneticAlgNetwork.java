@@ -84,8 +84,11 @@ public class GeneticAlgNetwork extends Network {
             //
             //}
 
-
-
+            if (populationFitness.isEmpty())
+            {
+            point(map(generation, 0, maxGen, .05, 1), map(0, 0, .5, .05, 1));    
+            continue;
+            }
 
             //Plot only fittest
             point(map(generation, 0, maxGen, .05, 1), map(populationFitness.get(getFittest()), 0, .5, .05, 1));
