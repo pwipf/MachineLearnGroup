@@ -21,7 +21,7 @@ public class GeneticAlgNetwork extends Network {
     ArrayList<Double> populationFitness = new ArrayList<>();
     int nWeightsBiases; // stores the total number of weights and biases
 
-    GeneticAlgNetwork(int[] sizes, double scale) {
+    GeneticAlgNetwork(int[] sizes) {
         super(sizes);
 
         nWeightsBiases = 0;

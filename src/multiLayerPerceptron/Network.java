@@ -17,8 +17,6 @@ class Network{
 	int layers;		// sizes.length
 	int nInputs, nOutputs;
 
-	double scale;
-
 	double[][][] w;
 	double[][]   b;
 

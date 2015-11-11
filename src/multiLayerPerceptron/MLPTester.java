@@ -13,7 +13,8 @@ public class MLPTester{
 		"pima-indians-diabetes","cmc","fertility","heart","glass"};
 
 	static enum Algs{Backprop, EvolutionaryStrategy, DiffEv, GeneticAlg};
-        private static int numFolds = 3;
+
+	private static int numFolds = 10;
 
 	// main()
 	public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class MLPTester{
 		for(int file=0;file<10;file++){
 
 			// to skip all but one dataset, for testing
-			if(file != 0)
+			if(file != 9)
 				continue;
 
 			ArffReader dataFile = new ArffReader(filelist[file]+".arff");
@@ -65,14 +66,14 @@ public class MLPTester{
 			for(Algs alg: Algs.values()){ // loop through all the algorithms
 
 				// to skip an algorithm for testing
-				if(alg==Algs.EvolutionaryStrategy);
-					//continue;// not yet implemented
-				if(alg==Algs.GeneticAlg)
-					continue;
 				if(alg==Algs.Backprop)
 					continue;
-                                if(alg==Algs.DiffEv)
-                                        continue;
+				if(alg==Algs.EvolutionaryStrategy)
+					continue;
+        //if(alg==Algs.DiffEv)
+        //  continue;
+				if(alg==Algs.GeneticAlg)
+					continue;
 
 				String algname=(alg==Algs.Backprop? "Backpropogation": (alg==Algs.EvolutionaryStrategy? "MuLambda":
 								(alg==Algs.DiffEv? "Differential Evolution": "GeneticAlg")));
@@ -86,13 +87,11 @@ public class MLPTester{
 
 				int[] right=new int[numFolds];
 				int[] wrong=new int[numFolds];
-				int color=0;
 
-				double scale=0;
 				for(int fold=0;fold<numFolds;fold++){
 					//System.out.println("\nFold "+(fold+1));
 
-					setPenColor(colorlist[color++%numFolds]);
+					setPenColor(colorlist[fold%colorlist.length]);
 
 					int ntests=examples/numFolds;
 					int ntrains=examples-ntests;
@@ -123,21 +122,21 @@ public class MLPTester{
 					///////////////////////////////////////////////////////////////
 					// send the network the training data and train it.
 
-					System.out.println("training on examples "+firstTrainIndex+"-"+lastTrainIndex);
+					//System.out.println("training on examples "+firstTrainIndex+"-"+lastTrainIndex);
 
 					Network net=null;
 					switch(alg){
 						case Backprop:
-							net=new BackpropNetwork(sizes,scale);
+							net=new BackpropNetwork(sizes);
 							break;
 						case EvolutionaryStrategy:
 							net=new EvolutionaryStrategy(sizes);
 							break;
 						case DiffEv:
-							net=new DiffEvNetwork(sizes,scale);
+							net=new DiffEvNetwork(sizes);
 							break;
 						case GeneticAlg:
-							net=new GeneticAlgNetwork(sizes,scale);
+							net=new GeneticAlgNetwork(sizes);
 							break;
 					}
 
@@ -147,7 +146,7 @@ public class MLPTester{
 					// test using simply the net.feedForward function, then choose the output node
 					// with the highest number (they are all between 0 and 1 if sigmoid activation)
 
-					System.out.println("testing on examples "+firstTestIndex+"-"+lastTestIndex);
+					//System.out.println("testing on examples "+firstTestIndex+"-"+lastTestIndex);
 					right[fold]=0;
 					wrong[fold]=0;
 					for(int i=0;i<ntests;i++){
@@ -165,9 +164,9 @@ public class MLPTester{
 							wrong[fold]++;
 					}
 
-					System.out.println("fold: "+(fold+1)+" right: "+right[fold]+" wrong: "+wrong[fold]);
+					System.out.println("fold: "+(fold+1)+", right: "+right[fold]+", wrong: "+wrong[fold]+
+									", "+(double)right[fold]/(right[fold]+wrong[fold])*100+"%");
 
-					scale=net.scale;
 				}
 
 				double mean=0;

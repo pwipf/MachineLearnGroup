@@ -6,9 +6,11 @@ import static multiLayerPerceptron.StdDraw.*;
 
 public class BackpropNetwork extends Network{
 
+	static double scale=0;
+
 	double[][][] v; //velocity for using momentum
 
-	BackpropNetwork(int[] sizes, double scale){
+	BackpropNetwork(int[] sizes){
 		super(sizes);
 
 		v=new double[layers][][]; // just need to add the velocity initalization
@@ -28,6 +30,19 @@ public class BackpropNetwork extends Network{
 		double eta=parameters[1];
 		double mu =parameters[2];
 
+		double[][] inputCopy=new double[input.length][input[0].length];
+		double[][] outputCopy=new double[output.length][output[0].length];
+
+
+		for(int i=0;i<input.length;i++){
+			//System.arraycopy(input[i], 0, inputCopy[i], 0, input[0].length);
+			for(int j=0;j<input[0].length;j++)
+				inputCopy[i][j]=input[i][j];
+			//System.arraycopy(output[i], 0, outputCopy[i], 0, output[0].length);
+			for(int j=0;j<output[0].length;j++)
+				outputCopy[i][j]=output[i][j];
+		}
+
 		int size=input.length;
 		if(size==0 || size != output.length)
 			throw new RuntimeException("Input number != Output number (or zero)");
@@ -37,17 +52,20 @@ public class BackpropNetwork extends Network{
 			throw new RuntimeException("Output size doesn't match network");
 
 
+
 		for(int e=0;e<epochs;e++){
-			shuffle(input,output,size);
 			double error=0;
+			shuffle(inputCopy,outputCopy,size);
 			for(int i=0;i<size;i++){
-				backProp(input[i],output[i],eta,mu);
-				error+=ssCost(feedForward(input[i]),output[i]);
+				backProp(inputCopy[i],outputCopy[i],eta,mu);
+				error+=ssCost(feedForward(inputCopy[i]),outputCopy[i]);
 			}
 
-			if(scale==0)//for graph
+			if(scale==0){//for graph
 				scale=error/size;
-			//System.out.println(error/trains);
+				//System.out.println("scale: "+scale);
+			}
+			//System.out.println(error);
 			point(map(e,0,epochs,.05,1),map(error/size,0,scale,.05,1));//graph
 		}
 	}

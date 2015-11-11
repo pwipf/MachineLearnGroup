@@ -16,7 +16,7 @@ public class DiffEvNetwork extends Network{
 
 	int nWeightsBiases; // stores the total number of weights and biases
 
-	DiffEvNetwork(int[] sizes, double scale){
+	DiffEvNetwork(int[] sizes){
 		super(sizes);
 
 		nWeightsBiases=0;
@@ -32,13 +32,6 @@ public class DiffEvNetwork extends Network{
 		double beta=parameters[2];
 		double pi  =parameters[3];
 		int size=input.length;
-		if(size==0 || size != output.length)
-			throw new RuntimeException("Input number != Output number (or zero)");
-		if(input[0].length != nInputs)
-			throw new RuntimeException("Input size doesn't match network");
-		if(output[0].length != nOutputs)
-			throw new RuntimeException("Output size doesn't match network");
-
 
 		//initialize population. Each member is a bunch of weights and biases.
 		Member[] population=new Member[npop];
@@ -73,7 +66,7 @@ public class DiffEvNetwork extends Network{
 					fm=fo; //fm always has the lesser value, for the graph below
 				}
 
-				point(map(generation,0,maxGen,.05,1),map(fm,0,.5,.05,1));
+				point(map(generation,0,maxGen,.05,1),map(fm,0,.8,.05,1));
 				//System.out.println(fm);
 			}
 		}

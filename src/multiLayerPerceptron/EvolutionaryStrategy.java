@@ -345,8 +345,4 @@ public class EvolutionaryStrategy extends Network {
         }
         return y;
     }
-
-    double getScale() {
-        return scale;
-    }
 }

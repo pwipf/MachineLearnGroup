@@ -1,4 +1,4 @@
-@relation breast-cancer-wisconsin-weka.filters.unsupervised.attribute.Remove-R1
+@relation breast-cancer-wisconsin
 
 @attribute 'Clump Thickness' numeric
 @attribute 'Uniformity of Cell Size' numeric
