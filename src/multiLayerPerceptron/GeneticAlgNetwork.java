@@ -275,7 +275,7 @@ public class GeneticAlgNetwork extends Network {
 
                 //If the seceond child is more fit than the second parent, we replace the secondParent
                 if (fitness(child2, input, output) < fitness(population.get(secondParent), input, output)) {
-                    population.set(secondParent, child1);
+                    population.set(secondParent, child2);
                 }
 
 
