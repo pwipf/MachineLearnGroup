@@ -3,11 +3,11 @@
 
 Backprop
 Epochs
-1000
+100
 eta
-0.005
+.05
 mu
-0.2
+0.5
 
 
 MuLambda
@@ -27,11 +27,11 @@ DiffEvolution
 MaxGen
 500
 Pop
-10
+15
 beta
-0.8
+.5
 pi
-0.6
+0.5
 
 
 GeneticAlg
@@ -51,11 +51,11 @@ mutationChance
 
 Backprop
 Epochs
-1000
+2000
 eta
-0.005
+0.0007
 mu
-0.2
+0.4
 
 
 MuLambda
@@ -75,11 +75,11 @@ DiffEvolution
 MaxGen
 500
 Pop
-10
+15
 beta
 0.8
 pi
-0.6
+0.7
 
 
 GeneticAlg
@@ -147,11 +147,11 @@ mutationChance
 
 Backprop
 Epochs
-1000
+2000
 eta
-0.005
+0.0005
 mu
-0.2
+0.3
 
 
 MuLambda
@@ -171,11 +171,11 @@ DiffEvolution
 MaxGen
 500
 Pop
-10
+15
 beta
-0.8
+2
 pi
-0.6
+0.9
 
 
 GeneticAlg
@@ -197,9 +197,9 @@ Backprop
 Epochs
 1000
 eta
-0.005
+0.008
 mu
-0.2
+0.3
 
 
 MuLambda
@@ -217,13 +217,13 @@ max Number of Mutations
 
 DiffEvolution
 MaxGen
-500
+400
 Pop
-10
+14
 beta
-0.8
+1
 pi
-0.6
+0.5
 
 
 GeneticAlg
@@ -269,9 +269,9 @@ MaxGen
 Pop
 10
 beta
-0.8
+.2
 pi
-0.6
+0.8
 
 
 GeneticAlg
@@ -291,9 +291,9 @@ mutationChance
 
 Backprop
 Epochs
-1000
+100
 eta
-0.005
+0.008
 mu
 0.2
 
@@ -315,11 +315,11 @@ DiffEvolution
 MaxGen
 500
 Pop
-10
+15
 beta
-0.8
+0.2
 pi
-0.6
+0.5
 
 
 GeneticAlg
@@ -339,7 +339,7 @@ mutationChance
 
 Backprop
 Epochs
-1000
+500
 eta
 0.005
 mu
@@ -361,13 +361,13 @@ max Number of Mutations
 
 DiffEvolution
 MaxGen
-500
+40
 Pop
 10
 beta
 0.8
 pi
-0.6
+0.5
 
 
 GeneticAlg
@@ -389,7 +389,7 @@ Backprop
 Epochs
 1000
 eta
-0.005
+0.0005
 mu
 0.2
 
@@ -411,11 +411,11 @@ DiffEvolution
 MaxGen
 500
 Pop
-10
+20
 beta
-0.8
+.1
 pi
-0.6
+0.2
 
 
 GeneticAlg
@@ -435,11 +435,11 @@ mutationChance
 
 Backprop
 Epochs
-1000
+500
 eta
-0.005
+.005
 mu
-0.2
+0.1
 
 
 MuLambda
@@ -457,11 +457,11 @@ max Number of Mutations
 
 DiffEvolution
 MaxGen
-500
+1000
 Pop
 10
 beta
-0.8
+1
 pi
 0.6
 
