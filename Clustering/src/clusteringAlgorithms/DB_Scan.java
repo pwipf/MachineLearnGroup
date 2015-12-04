@@ -53,13 +53,13 @@ public class DB_Scan extends Algorithm {
 
 
         //Shuffle the data
-        for (int i = 0; i < inputData.length; ++i) // shuffle indices
-        {
-            int r = new Random().nextInt(inputData.length - i) + i;
-            double tmp[] = inputData[r];
-            inputData[r] = inputData[i];
-            inputData[i] = tmp;
-        }
+//        for (int i = 0; i < inputData.length; ++i) // shuffle indices
+//        {
+//            int r = new Random().nextInt(inputData.length - i) + i;
+//            double tmp[] = inputData[r];
+//            inputData[r] = inputData[i];
+//            inputData[i] = tmp;
+//        }
 
         //Initalize Visited Array    
         for (int i = 0; i < dataVisited.length; i++) {
@@ -70,6 +70,7 @@ public class DB_Scan extends Algorithm {
 
         DBScan(eps, minPts);
 
+        removeSmallClusters(minPts);
         //System.out.println("Total Number of Clusters:" + numberClusters);
         //Prints out all Cluster tuples
         for (int i = 0; i < (numberClusters); i++) {
@@ -200,6 +201,45 @@ public class DB_Scan extends Algorithm {
 
         }
 
+    }
+    
+    
+    public void removeSmallClusters(int minPts)
+    {
+        
+            for (int i = 0; i < (numberClusters); i++) {
+            int pointsInCluster = 0;
+            for (int z = 0; z < inputData.length; z++) {
+
+                if (dataVisited[z][1] == i) {
+
+                   pointsInCluster++;
+
+                }
+
+            }
+            
+            if (pointsInCluster < minPts)
+            {
+            for (int z = 0; z < inputData.length; z++) {
+
+                if (dataVisited[z][1] == i) {
+
+                   dataVisited[z][1] = -1; //Set to noise
+
+                }
+
+            }                
+                
+              //remove all the datapoints and put them into noise  
+                
+            }
+            
+        }
+        
+        
+        
+        
     }
 
 }
