@@ -1,5 +1,4 @@
-
-package clusteringAlgorithms;
+package mainAlgs;
 
 
 import java.io.*;
@@ -7,10 +6,10 @@ import java.util.*;
 
 /**
  *
- * @author Magpie
+ * @author Phil
  */
 public class ArffReader {
-
+	
 	double data[][];
 	double dataClass[];
 	int nClasses;
@@ -127,5 +126,44 @@ public class ArffReader {
 			dataClass[i]=classList.get(i);
 		}
 		strMap=stringMap.toArray(new String[stringMap.size()][]);
+		// printData(data);
+		// printData(strMap);
+		// printDataClass(dataClass);
+	}
+	
+	private static void printData(double[][] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.printf("%d -- ", i);
+			for (int j = 0; j < arr[i].length; j++) {
+				System.out.printf("%f, ", arr[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	
+	private static void printData(String[][] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.printf("%d -- ", i);
+			for (int j = 0; j < arr[i].length; j++) {
+				System.out.printf("%s, ", arr[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	
+	private void printDataClass(double[] classes) {
+		int iter = 0;
+		for (double d : classes) {
+			System.out.printf("%d -- %f%n", iter, dataClass[iter]);
+			iter++;
+		}	
+	}
+	
+	public double[] getClassSet() {
+		return dataClass;
+	}
+	
+	public double getDataClass(int index) {
+		return dataClass[index];
 	}
 }
