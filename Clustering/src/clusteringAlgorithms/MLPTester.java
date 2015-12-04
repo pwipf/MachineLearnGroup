@@ -46,15 +46,8 @@ public class MLPTester{
 
 			int	examples=dataFile.data.length; // actual number of data records in the file
 
-			// need to setup an output vector all zeros with a 1 at exactly one position, the proper class.
-			double[][] outputVector= new double[examples][nout];
-
-			for(int i=0;i<examples;i++)
-				for(int j=0;j<nout;j++)
-					if((int)dataFile.dataClass[i]==j)
-						outputVector[i][j]=1;
-					else
-						outputVector[i][j]=0;
+                        
+                        
 
 
 			System.out.println("File: "+filelist[file]);
