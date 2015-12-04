@@ -9,11 +9,11 @@ public class MLPTester{
 
 	static Random gen=new Random();
 
-	static String[] filelist={"banknote","mammograph","breastcancer","wine_cultivar","wine_quality",
-		"pima-indians-diabetes","cmc","fertility","heart","glass"};
-	static String[] algNames={"Backprop","EvStrat","DiffEv","GenAlg"};
+	static String[] filelist={"banknote","mammograph","balance-scale","wine_cultivar","userKnowledgeModeling",
+		"iris","cmc","fertility","heart","glass"};
+	static String[] algNames={"k_Means","DB_Scan","CompetLearning","ACO", "PSO"};
 
-	static enum Algs{Backprop, EvolutionaryStrategy, DiffEv, GeneticAlg};
+	static enum Algs{k_Means, DB_Scan, CompetLearning, ACO, PSO};
 
 
 	// main()
@@ -54,36 +54,69 @@ public class MLPTester{
 			System.out.println("Number examples: "+examples);
 			System.out.print("Number of attributes: "+nin);
 			if(nin==4)System.out.print(" (Oops, it looked like 5 on UCI but they count the class)");
-			System.out.println("\nNumber of classifications: "+nout);
+			//System.out.println("\nNumber of classifications: "+nout);
 
 			for(Algs alg: Algs.values()){ // loop through all the algorithms
 
 				// to skip an algorithm for testing
-				if(alg==Algs.Backprop)
+				if(alg==Algs.k_Means)
 					continue;
-				if(alg==Algs.EvolutionaryStrategy)
+		//		if(alg==Algs.DB_Scan)
+		//			continue;
+                                if(alg==Algs.CompetLearning)
+                                continue;
+				if(alg==Algs.ACO)
 					continue;
-        //if(alg==Algs.DiffEv)
-          //continue;
-				if(alg==Algs.GeneticAlg)
+                		if(alg==Algs.PSO)
 					continue;
 
 				System.out.println("\nAlg: "+algNames[alg.ordinal()]);
                                 System.out.println("Length of dataFile " + dataFile.data[0].length);
 
                                 
-                                //Prints out all the data
-                                for (int z = 0; z<examples; z++)
-                                {                                
-                                for (int i = 0; i<nin; i++)
-                                {
-                                    System.out.print(dataFile.data[z][i]  + " ");
-                                }
-                                    System.out.println();
-                                }
 
 
+                                Algorithm net=null;
+					switch(alg){
+					//	case k_Means:
+					//		net=new k_Means();
+					//		break;
+						case DB_Scan:
+							net=new DB_Scan();
+							break;
+					//	case CompetLearning:
+					//		net=new CompetLearning();
+					//		break;
+					//	case ACO:
+					//		net=new ACO();
+					//		break;
+					//	case PSO:
+					//		net=new PSO();
+					//		break;                                                        
+                                                        
+					}
+
+					net.generateClusters(dataFile.data,parameters[file][alg.ordinal()]);
+                                
+                                
+                                
+                                
+                                
+                                
+                                
 			}//alg
+                        
+                        
+                                //Prints out all the data
+                            //    for (int z = 0; z<examples; z++)
+                            //    {                                
+                            //    for (int i = 0; i<nin; i++)
+                            //    {
+                            //        System.out.print(dataFile.data[z][i]  + " ");
+                            //    }
+                            //        System.out.println();
+                            //    }
+                        
 
 		}//file
 

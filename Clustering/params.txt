@@ -1,480 +1,209 @@
 
 %%% DataFile: banknote
 
-Backprop
-Epochs
-100
-eta
-.05
-mu
-0.5
+k_Means
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-20
-lambda (child population size)
-2
-max Number of Mutations
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-500
-Pop
-15
-beta
-.5
-pi
-0.5
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-150
-Pop
-50
-crossoverRate
-0.8
-mutationPercentChange
-1
-mutationChance
-0.03
+ACO
+
+
+PSO
 
 
 %%% DataFile: mammograph
 
-Backprop
-Epochs
-2000
-eta
-0.0007
-mu
-0.2
+k_Means
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-500
-Pop
-15
-beta
-0.8
-pi
-0.7
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-75
-Pop
-100
-crossoverRate
-0.9
-mutationPercentChange
-1
-mutationChance
-0.05
+ACO
 
 
-%%% DataFile: breastcancer
-
-Backprop
-Epochs
-1000
-eta
-0.005
-mu
-0.2
+PSO
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+%%% DataFile: balance-scale
+
+k_Means
+
+
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-500
-Pop
-10
-beta
-0.8
-pi
-0.6
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-150
-Pop
-100
-crossoverRate
-0.25
-mutationPercentChange
-.1
-mutationChance
-0.03
+ACO
+
+
+PSO
 
 
 %%% DataFile: wine_cultivar
 
-Backprop
-Epochs
-2000
-eta
-0.0005
-mu
-0.3
+k_Means
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-500
-Pop
-15
-beta
-2
-pi
-0.9
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-125
-Pop
-125
-crossoverRate
-0.15
-mutationPercentChange
-1.0
-mutationChance
-0.3
+ACO
 
 
-%%% DataFile: wine_quality
-
-Backprop
-Epochs
-1000
-eta
-0.008
-mu
-0.3
+PSO
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+%%% DataFile: userKnowledgeModeling
+
+k_Means
+
+
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-400
-Pop
-14
-beta
-1
-pi
-0.5
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-100
-Pop
-10
-crossoverRate
-0.5
-mutationPercentChange
-0.2
-mutationChance
-0.015
+ACO
 
 
-%%% DataFile: pima-indians-diabetes
-
-Backprop
-Epochs
-1000
-eta
-0.005
-mu
-0.2
+PSO
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+%%% DataFile: iris
+
+k_Means
+
+
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-500
-Pop
-10
-beta
-.2
-pi
-0.8
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-100
-Pop
-25
-crossoverRate
-0.5
-mutationPercentChange
-0.25
-mutationChance
-0.2
+ACO
+
+
+PSO
 
 
 %%% DataFile: cmc
 
-Backprop
-Epochs
-100
-eta
-0.008
-mu
-0.2
+k_Means
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-500
-Pop
-15
-beta
-0.2
-pi
-0.5
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-100
-Pop
-10
-crossoverRate
-0.25
-mutationPercentChange
-0.2
-mutationChance
-0.015
+ACO
 
+
+PSO
 
 %%% DataFile: fertility
 
-Backprop
-Epochs
-500
-eta
-0.005
-mu
-0.2
+k_Means
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-40
-Pop
-10
-beta
-0.8
-pi
-0.5
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-300
-Pop
-50
-crossoverRate
-0.3
-mutationPercentChange
-.2
-mutationChance
-0.0015
+ACO
+
+
+PSO
 
 
 %%% DataFile: heart
 
-Backprop
-Epochs
-1000
-eta
-0.0005
-mu
-0.2
+k_Means
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-500
-Pop
-20
-beta
-.1
-pi
-0.2
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-200
-Pop
-100
-crossoverRate
-0.8
-mutationPercentChange
-0.8
-mutationChance
-0.3
+ACO
+
+
+PSO
 
 
 %%% DataFile: glass
 
-Backprop
-Epochs
-500
-eta
-.005
-mu
-0.1
+k_Means
 
 
-MuLambda
-initialPopulationSize
-100
-generations
-50
-mu (parental generation size)
-80
-lambda (child population size)
-20
-max Number of Mutations
+DB_Scan
+EPS
 5
+minPoints
+3
 
 
-DiffEvolution
-MaxGen
-1000
-Pop
-10
-beta
-1
-pi
-0.6
+CompetLearning
 
 
-GeneticAlg
-MaxGen
-500
-Pop
-150
-crossoverRate
-0.30
-mutationPercentChange
-0.08
-mutationChance
-0.01
+ACO
+
+
+PSO
 

@@ -13,7 +13,7 @@ import java.util.Random;
  *
  * @author Brendan Burns
  */
-public class DBScan {
+public class DB_Scan extends Algorithm {
 
     static double inputData[][];
 //inputData[numInputs][tupleSize]
@@ -163,6 +163,76 @@ public class DBScan {
     }
 
     }
+    
+    public void generateClusters(double[][] data, double[] parameters){
+        //Tunable Variables        
+    //EPS value aka euclidean distance between datapoints
+        double eps = parameters[0];  
+    //Minimum number of points needed to form a Cluster
+        int minPts = (int)parameters[1];
+        
+  
+        inputData = data;
+        numInputs = inputData.length;
+        tupleSize = inputData[0].length;
+        dataVisited = new int[numInputs][2];
+
+
+        //Shuffle the data
+        for (int i = 0; i < inputData.length; ++i) // shuffle indices
+        {
+            int r = new Random().nextInt(inputData.length - i) + i;
+            double tmp[] = inputData[r];
+            inputData[r] = inputData[i];
+            inputData[i] = tmp;
+        }
+
+        //Initalize Visited Array    
+        for (int i = 0; i < dataVisited.length; i++) {
+            dataVisited[i][0] = 0;        //Not Visited
+            dataVisited[i][1] = -2;       //Not in a cluster
+
+        }
+
+        DBScan(eps, minPts);
+
+        //System.out.println("Total Number of Clusters:" + numberClusters);
+        //Prints out all Cluster tuples
+        for (int i = 0; i < (numberClusters); i++) {
+            System.out.println("Cluster # " + (i + 1) + " ");
+            for (int z = 0; z < inputData.length; z++) {
+
+                if (dataVisited[z][1] == i) {
+
+                    for (int k = 0; k < inputData[0].length; ++k) {
+                        System.out.print(inputData[z][k] + " ");
+                    }
+                    System.out.println();
+
+                }
+
+            }
+        }
+
+        //Prints out all Noise tuples
+        if (hasNoise)
+        {
+        System.out.println("Noise Tuples " + " ");
+        for (int z = 0; z < inputData.length; z++) {
+
+            if (dataVisited[z][1] == -1) {
+
+                for (int k = 0; k < inputData[0].length; ++k) {
+                    System.out.print(inputData[z][k] + " ");
+                }
+                System.out.println();
+
+            }
+
+        }
+    }
+
+	}  
 
     public static void DBScan(double eps, int minPts) {
         for (int i = 0; i < inputData.length; i++) {

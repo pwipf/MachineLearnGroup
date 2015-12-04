@@ -60,10 +60,15 @@ public class ParameterLoader {
     }
 
     public void initfile(String[] datafiles) {
-        String[][] paramNames = {{"Epochs", "eta", "mu"},
-        {"initialPopulationSize", "generations", "mu (parental generation size)", "lambda (child population size)", "max Number of Mutations"},
-        {"MaxGen", "Pop", "beta", "pi"},
-        {"MaxGen", "Pop", "crossoverRate", "mutationPercentChange", "mutationChance"}};
+        String[][] paramNames = {
+        {""},    //K means
+        {"EPS, minPoints"},         //DB Scan
+        {""},                       //
+        {""},
+        {""}
+        
+        
+                                };
 
         try {
             BufferedWriter br = new BufferedWriter(new FileWriter(filename));
@@ -97,22 +102,13 @@ public class ParameterLoader {
                                         break;
                                 }
                                 break;
-                            case 1:
+                            case 1: //DB Scan
                                 switch (k) {
                                     case 0:
-                                        br.write("100");
+                                        br.write("5");
                                         break;
                                     case 1:
-                                        br.write("50");
-                                        break;
-                                    case 2:
-                                        br.write("80");
-                                        break;
-                                    case 3:
-                                        br.write("20");
-                                        break;
-                                    case 4:
-                                        br.write("5");
+                                        br.write("3");
                                         break;
                                 }
                                 break;
@@ -134,6 +130,24 @@ public class ParameterLoader {
                                 }
                                 break;
                             case 3:
+                                switch (k) {
+                                    case 0:
+                                        br.write("100");
+                                        break;
+                                    case 1:
+                                        br.write("10");
+                                        break;
+                                    case 2:
+                                        br.write("0.25");
+                                        break;
+                                    case 3:
+                                        br.write("0.2");
+                                        break;
+                                    case 4:
+                                        br.write("0.015");
+                                        break;
+                                }
+                                case 4:
                                 switch (k) {
                                     case 0:
                                         br.write("100");
