@@ -1,135 +1,60 @@
 
 %%% DataFile: banknote
 
-k_Means
-
-
 DB_Scan
 EPS
-5
+1
 minPoints
-3
-
-
-CompetLearning
-
-
-ACO
-
-
-PSO
+5
 
 
 %%% DataFile: mammograph
 
-k_Means
-
-
 DB_Scan
 EPS
 5
 minPoints
 3
-
-
-CompetLearning
-
-
-ACO
-
-
-PSO
 
 
 %%% DataFile: balance-scale
 
-k_Means
-
-
 DB_Scan
 EPS
 5
 minPoints
 3
-
-
-CompetLearning
-
-
-ACO
-
-
-PSO
 
 
 %%% DataFile: wine_cultivar
 
-k_Means
-
-
 DB_Scan
 EPS
 5
 minPoints
 3
-
-
-CompetLearning
-
-
-ACO
-
-
-PSO
 
 
 %%% DataFile: userKnowledgeModeling
 
-k_Means
-
-
 DB_Scan
 EPS
 5
 minPoints
 3
-
-
-CompetLearning
-
-
-ACO
-
-
-PSO
 
 
 %%% DataFile: iris
 
-k_Means
-
-
 DB_Scan
 EPS
 5
 minPoints
 3
-
-
-CompetLearning
-
-
-ACO
-
-
-PSO
 
 
 %%% DataFile: cmc
 
-k_Means
-
-
 DB_Scan
 EPS
 5
@@ -137,18 +62,7 @@ minPoints
 3
 
 
-CompetLearning
-
-
-ACO
-
-
-PSO
-
 %%% DataFile: fertility
-
-k_Means
-
 
 DB_Scan
 EPS
@@ -157,53 +71,20 @@ minPoints
 3
 
 
-CompetLearning
-
-
-ACO
-
-
-PSO
-
-
 %%% DataFile: heart
-
-k_Means
-
 
 DB_Scan
 EPS
 5
 minPoints
 3
-
-
-CompetLearning
-
-
-ACO
-
-
-PSO
 
 
 %%% DataFile: glass
 
-k_Means
-
-
 DB_Scan
 EPS
-5
+.75
 minPoints
-3
-
-
-CompetLearning
-
-
-ACO
-
-
-PSO
+5
 

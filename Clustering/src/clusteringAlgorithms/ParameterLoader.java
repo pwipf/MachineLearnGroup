@@ -6,8 +6,8 @@ import java.util.*;
 public class ParameterLoader {
 
     static final int NDATAFILES = 10;
-    static final int NALGS = 4;
-    static final String[] ALGNAMES = {"Backprop", "MuLambda", "DiffEvolution", "GeneticAlg"};
+    static final int NALGS = 1;
+    static final String[] ALGNAMES = {"DB_Scan"};
     String filename;
 
     public ParameterLoader(String filename) {
@@ -61,11 +61,11 @@ public class ParameterLoader {
 
     public void initfile(String[] datafiles) {
         String[][] paramNames = {
-        {""},    //K means
-        {"EPS, minPoints"},         //DB Scan
-        {""},                       //
-        {""},
-        {""}
+        //{""},    //K means
+        {"EPS, minPoints"}         //DB Scan
+        //{""},                       //
+        //{""},
+        //{""}
         
         
                                 };

@@ -69,7 +69,7 @@ public class Algorithm {
                 //Getting the total values of the given cluster
                 for (int y = 0; y<inputData[0].length; y++)     //Iterating through the points in a tuple inputData[][y]
                 {
-                error = error + (inputData[z][y] - clusterMeans[y]);
+                error = error + Math.pow((inputData[z][y] - clusterMeans[y]), 2);
                 }
                 
                     
@@ -84,8 +84,8 @@ public class Algorithm {
             
             
             
-           
-            
+        //Cluster Penalty   
+       error = error + (totalClusters * 25);
             
         return error;    
         }

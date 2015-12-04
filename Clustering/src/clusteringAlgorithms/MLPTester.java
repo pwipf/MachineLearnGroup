@@ -96,7 +96,7 @@ public class MLPTester{
                                                         
 					}
 
-					net.generateClusters(dataFile.data,parameters[file][alg.ordinal()]);
+					net.generateClusters(dataFile.data,parameters[file][0]);
                                 
                                 
                                 

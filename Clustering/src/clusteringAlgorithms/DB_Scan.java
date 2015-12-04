@@ -44,7 +44,7 @@ public class DB_Scan extends Algorithm {
         double eps = parameters[0];  
     //Minimum number of points needed to form a Cluster
         int minPts = (int)parameters[1];
-        
+        System.out.println("Minimum number of points " + minPts);
   
         inputData = data;
         numInputs = inputData.length;
