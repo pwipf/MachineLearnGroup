@@ -53,13 +53,13 @@ public class DB_Scan extends Algorithm {
 
 
         //Shuffle the data
-//        for (int i = 0; i < inputData.length; ++i) // shuffle indices
-//        {
-//            int r = new Random().nextInt(inputData.length - i) + i;
-//            double tmp[] = inputData[r];
-//            inputData[r] = inputData[i];
-//            inputData[i] = tmp;
-//        }
+        for (int i = 0; i < inputData.length; ++i) // shuffle indices
+        {
+            int r = new Random(1).nextInt(inputData.length - i) + i;
+            double tmp[] = inputData[r];
+            inputData[r] = inputData[i];
+            inputData[i] = tmp;
+        }
 
         //Initalize Visited Array    
         for (int i = 0; i < dataVisited.length; i++) {
