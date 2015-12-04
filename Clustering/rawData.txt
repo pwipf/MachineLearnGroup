@@ -3,6 +3,9 @@ init:
 Deleting: C:\Users\Brendan Burns\Documents\GitHub\MachineLearnGroup\Clustering\build\built-jar.properties
 deps-jar:
 Updating property file: C:\Users\Brendan Burns\Documents\GitHub\MachineLearnGroup\Clustering\build\built-jar.properties
+Compiling 1 source file to C:\Users\Brendan Burns\Documents\GitHub\MachineLearnGroup\Clustering\build\classes
+warning: [options] bootstrap class path not set in conjunction with -source 1.7
+1 warning
 compile:
 run:
 Relation: data_banknote_authentication
@@ -12,6 +15,7 @@ Number of attributes: 4 (Oops, it looked like 5 on UCI but they count the class)
 Alg: DB_Scan
 Length of dataFile 4
 Minimum number of points 5
+Total Number of Clusters:38
 Cluster # 1 
 4.8272 3.0687 0.68604 0.80731 
 4.1373 0.49248 1.093 1.8276 
@@ -1431,6 +1435,7 @@ Number of attributes: 5
 Alg: DB_Scan
 Length of dataFile 5
 Minimum number of points 3
+Total Number of Clusters:6
 Cluster # 1 
 4.0 58.0 1.0 2.0 0.0 
 4.0 57.0 1.0 3.0 0.0 
@@ -2276,6 +2281,7 @@ Number of attributes: 8
 Alg: DB_Scan
 Length of dataFile 8
 Minimum number of points 3
+Total Number of Clusters:4
 Cluster # 1 
 2.0 83.0 66.0 23.0 50.0 32.2 0.497 22.0 
 2.0 100.0 66.0 20.0 90.0 32.9 0.867 28.0 
@@ -3057,6 +3063,7 @@ Number of attributes: 13
 Alg: DB_Scan
 Length of dataFile 13
 Minimum number of points 5
+Total Number of Clusters:7
 Cluster # 1 
 13.73 4.36 2.26 22.5 88.0 1.28 0.47 0.52 1.15 6.62 0.78 1.75 520.0 
 12.77 2.39 2.28 19.5 86.0 1.39 0.51 0.48 0.64 9.899999 0.57 1.63 470.0 
@@ -3251,6 +3258,7 @@ Number of attributes: 5
 Alg: DB_Scan
 Length of dataFile 5
 Minimum number of points 3
+Total Number of Clusters:5
 Cluster # 1 
 0.15 0.32 0.05 0.27 0.29 
 0.49 0.64 0.34 0.78 0.21 
@@ -3523,6 +3531,7 @@ Number of attributes: 4 (Oops, it looked like 5 on UCI but they count the class)
 Alg: DB_Scan
 Length of dataFile 4
 Minimum number of points 3
+Total Number of Clusters:2
 Cluster # 1 
 7.7 3.0 6.1 2.3 
 5.6 2.8 4.9 2.0 
@@ -3683,6 +3692,7 @@ Number of attributes: 9
 Alg: DB_Scan
 Length of dataFile 9
 Minimum number of points 5
+Total Number of Clusters:4
 Cluster # 1 
 23.0 4.0 4.0 1.0 1.0 1.0 3.0 4.0 0.0 
 22.0 4.0 4.0 0.0 1.0 1.0 2.0 4.0 0.0 
@@ -5169,6 +5179,7 @@ Number of attributes: 9
 Alg: DB_Scan
 Length of dataFile 9
 Minimum number of points 3
+Total Number of Clusters:12
 Cluster # 1 
 -0.33 0.89 1.0 1.0 0.0 0.0 0.6 1.0 0.31 
 -1.0 0.56 1.0 1.0 0.0 0.0 0.8 1.0 0.5 
@@ -5290,6 +5301,7 @@ Number of attributes: 13
 Alg: DB_Scan
 Length of dataFile 13
 Minimum number of points 3
+Total Number of Clusters:6
 Cluster # 1 
 48.0 1.0 4.0 124.0 274.0 0.0 2.0 166.0 0.0 0.5 2.0 0.0 7.0 
 38.0 1.0 1.0 120.0 231.0 0.0 0.0 182.0 1.0 3.8 2.0 0.0 7.0 
@@ -5575,6 +5587,7 @@ Number of attributes: 9
 Alg: DB_Scan
 Length of dataFile 9
 Minimum number of points 5
+Total Number of Clusters:3
 Cluster # 1 
 1.51763 12.8 3.66 1.27 73.01 0.6 8.56 0.0 0.0 
 1.52177 13.2 3.68 1.15 72.75 0.54 8.52 0.0 0.0 
@@ -5795,5 +5808,5 @@ Noise Tuples
 1.52614 13.7 0.0 1.36 71.24 0.19 13.44 0.0 0.1 
 Total Error is 1267.2304954118003
 
-Finished in 1.076 sec
+Finished in 1.089 sec
 BUILD SUCCESSFUL (total time: 1 second)

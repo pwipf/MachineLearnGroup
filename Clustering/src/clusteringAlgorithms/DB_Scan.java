@@ -71,7 +71,7 @@ public class DB_Scan extends Algorithm {
         DBScan(eps, minPts);
 
         removeSmallClusters(minPts);
-        //System.out.println("Total Number of Clusters:" + numberClusters);
+        System.out.println("Total Number of Clusters:" + numberClusters);
         //Prints out all Cluster tuples
         for (int i = 0; i < (numberClusters); i++) {
             System.out.println("Cluster # " + (i + 1) + " ");
