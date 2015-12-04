@@ -9,7 +9,7 @@ public class MLPTester{
 
 	static Random gen=new Random();
 
-	static String[] filelist={"banknote","mammograph","balance-scale","wine_cultivar","userKnowledgeModeling",
+	static String[] filelist={"banknote","mammograph","pima-indians-diabetes","wine_cultivar","userKnowledgeModeling",
 		"iris","cmc","fertility","heart","glass"};
 	static String[] algNames={"k_Means","DB_Scan","CompetLearning","ACO", "PSO"};
 
@@ -29,7 +29,7 @@ public class MLPTester{
 		for(int file=0;file<10;file++){
 
 			// to skip all but one dataset, for testing
-			if(file != 9)
+			if(file != 8)
 				continue;
 
 			ArffReader dataFile = new ArffReader(filelist[file]+".arff");

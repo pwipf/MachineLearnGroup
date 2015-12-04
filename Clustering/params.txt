@@ -3,7 +3,7 @@
 
 DB_Scan
 EPS
-1
+1.1
 minPoints
 5
 
@@ -12,16 +12,16 @@ minPoints
 
 DB_Scan
 EPS
-5
+1.5
 minPoints
 3
 
 
-%%% DataFile: balance-scale
+%%% DataFile: pima-indians-diabetes
 
 DB_Scan
 EPS
-5
+35
 minPoints
 3
 
@@ -30,16 +30,16 @@ minPoints
 
 DB_Scan
 EPS
-5
+15
 minPoints
-3
+5
 
 
 %%% DataFile: userKnowledgeModeling
 
 DB_Scan
 EPS
-5
+.22
 minPoints
 3
 
@@ -48,7 +48,7 @@ minPoints
 
 DB_Scan
 EPS
-5
+1
 minPoints
 3
 
@@ -57,16 +57,16 @@ minPoints
 
 DB_Scan
 EPS
-5
+1
 minPoints
-3
+5
 
 
 %%% DataFile: fertility
 
 DB_Scan
 EPS
-5.0
+1
 minPoints
 3
 
@@ -75,7 +75,7 @@ minPoints
 
 DB_Scan
 EPS
-5
+20
 minPoints
 3
 
