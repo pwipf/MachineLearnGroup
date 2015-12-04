@@ -29,7 +29,7 @@ public class MLPTester{
 		for(int file=0;file<10;file++){
 
 			// to skip all but one dataset, for testing
-			if(file != 8)
+			if(file == 6)
 				continue;
 
 			ArffReader dataFile = new ArffReader(filelist[file]+".arff");

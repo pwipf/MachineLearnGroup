@@ -55,7 +55,10 @@ public class Algorithm {
             //Calculating the mean from (Total/Size)
             for (int y = 0; y<inputData[0].length; y++)
                 {
+                if (clusterSize > 0)
+                {
                 clusterMeans[y] = clusterMeans[y]/clusterSize;
+                }
                 }
             
             
