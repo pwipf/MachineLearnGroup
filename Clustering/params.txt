@@ -152,7 +152,7 @@ k_Means
 
 DB_Scan
 EPS
-5
+5.0
 minPoints
 3
 
